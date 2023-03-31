@@ -15,4 +15,4 @@ def plot_cos():
     )
 
 if __name__ == "__main__":
-    plot_sine()
+    plot_cos()

@@ -14,18 +14,17 @@ def main():
         # Loop over each Python file in the directory
         for file in plot_files:
             # Import the module containing the plotting functions
-            spec = spec_from_file_location("module.name", file)
+            spec = spec_from_file_location("src", file)
             module = module_from_spec(spec)
             spec.loader.exec_module(module)
 
             for name, func in getmembers(module, isfunction):
                 # Skip any functions that don't start with "plot_"
                 print(name)
-                if not name.startswith("plot_") or name == "plot_nothing":
+                if not name.startswith("plot_") or name.startswith("plot_nothing"):
                     continue
 
                 fig = func()
-                # Add the plot to the PDF document as a separate page
                 pdf.savefig(fig)
                 plt.close(fig)
 
