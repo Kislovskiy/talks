@@ -7,12 +7,13 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 
 def main():
-    # Get a list of all the Python files in the directory
-    plot_files = Path(__file__).parent.glob("plot_*.py")
-    results_dir = Path(__file__).resolve().parent.parent / "results"
-    with PdfPages(f"{results_dir}/assembled.pdf") as pdf:
-        # Loop over each Python file in the directory
-        for file in plot_files:
+    # Create a PDF file to store all the plots
+    path_to_assembled_pdf = (
+        Path(__file__).parent.parent.joinpath("results").joinpath("assembled.pdf")
+    )
+    with PdfPages(path_to_assembled_pdf) as pdf:
+        # Loop over each Python file in the directory that starts with "plot_"
+        for file in Path(__file__).parent.glob("plot_*.py"):
             # Import the module containing the plotting functions
             spec = spec_from_file_location("src", file)
             module = module_from_spec(spec)
