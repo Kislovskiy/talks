@@ -13,8 +13,8 @@ jobs:
     - name: Setup conda environment
       uses: conda-incubator/setup-miniconda@v2
       with:
-        activate-environment: 2023_PyData_Berlin
         environment-file: 2023_PyData_Berlin/environment.yml
+        activate-environment: 2023_PyData_Berlin
 
     - name: Generate PDF
       run: python 2023_PyData_Berlin/src/assemble_plots.py
