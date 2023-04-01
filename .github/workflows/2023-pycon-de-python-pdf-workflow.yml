@@ -1,0 +1,28 @@
+name: Generate PDF
+on:
+  push:
+    branches: [2023-pycon-de*]
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup conda environment
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-activate-base: true
+        conda-version: latest
+        python-version: '3.11'
+        environment-file: 2023_PyData_Berlin/environment.yml
+
+    - name: Generate PDF
+      run: python 2023_PyData_Berlin/src/assemble_plots.py
+
+    - name: Archive PDF
+      uses: actions/upload-artifact@v2
+      with:
+        name: assembled.pdf
+        path: 2023_PyData_Berlin/results/assembled.pdf
