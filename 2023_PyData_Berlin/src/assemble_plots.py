@@ -12,9 +12,7 @@ def main():
         Path(__file__).parent.parent.joinpath("results").joinpath("assembled.pdf")
     )
     with PdfPages(path_to_assembled_pdf) as pdf:
-        # Loop over each Python file in the directory that starts with "plot_"
         for file in Path(__file__).parent.glob("plot_*.py"):
-            # Import the module containing the plotting functions
             spec = spec_from_file_location("src", file)
             module = module_from_spec(spec)
             spec.loader.exec_module(module)
