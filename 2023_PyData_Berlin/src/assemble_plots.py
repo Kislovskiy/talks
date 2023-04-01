@@ -20,14 +20,11 @@ def main():
             spec.loader.exec_module(module)
 
             for name, func in getmembers(module, isfunction):
-                # Skip any functions that don't start with "plot_"
-                print(name)
-                if not name.startswith("plot_") or name.startswith("plot_nothing"):
-                    continue
-
-                fig = func()
-                pdf.savefig(fig)
-                plt.close(fig)
+                if name.startswith("plot_"):
+                    fig = func()
+                    if fig:
+                        pdf.savefig(fig)
+                        plt.close(fig)
 
 
 if __name__ == "__main__":
