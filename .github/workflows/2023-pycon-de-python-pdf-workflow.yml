@@ -27,8 +27,10 @@ jobs:
           python 2023_PyData_Berlin/src/assemble_plots.py
 
   archive-pdf:
+    runs-on: ubuntu-latest
+    needs: generate-pdf
+    steps:
     - name: Archive PDF
-      needs: generate-pdf
       uses: actions/upload-artifact@v2
       with:
         name: assembled.pdf
