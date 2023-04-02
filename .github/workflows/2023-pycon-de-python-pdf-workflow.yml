@@ -26,8 +26,9 @@ jobs:
           ls -al 2023_PyData_Berlin/src
           python 2023_PyData_Berlin/src/assemble_plots.py
 
+  archive-pdf:
     - name: Archive PDF
-      needs: Generate PDF
+      needs: generate-pdf
       uses: actions/upload-artifact@v2
       with:
         name: assembled.pdf
