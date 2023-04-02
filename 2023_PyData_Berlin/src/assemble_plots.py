@@ -8,10 +8,9 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 def main():
     # Create a PDF file to store all the plots
-    path_to_assembled_pdf = (
-        Path(__file__).parent.parent.joinpath("results").joinpath("assembled.pdf")
-    )
-    path_to_assembled_pdf.parent.mkdir(parents=True, exist_ok=True)
+    results_directory = Path(__file__).parent.parent.joinpath("results")
+    results_directory.mkdir(parents=True, exist_ok=True)
+    path_to_assembled_pdf = results_directory.joinpath("galery.pdf")
     with PdfPages(path_to_assembled_pdf) as pdf:
         for file in Path(__file__).parent.glob("plot_*.py"):
             spec = spec_from_file_location("src", file)

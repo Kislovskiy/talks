@@ -4,7 +4,7 @@ on:
     branches: [2023-pycon-de*]
 
 jobs:
-  archive-pdf:
+  generate-pdf:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -22,5 +22,5 @@ jobs:
     - name: Archive PDF
       uses: actions/upload-artifact@v3
       with:
-        name: assembled.pdf
-        path: 2023_PyData_Berlin/results/assembled.pdf
+        name: galery.pdf
+        path: 2023_PyData_Berlin/results/galery.pdf
