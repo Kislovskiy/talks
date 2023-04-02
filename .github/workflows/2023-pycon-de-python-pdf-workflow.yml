@@ -26,11 +26,6 @@ jobs:
           ls -al 2023_PyData_Berlin/src
           python 2023_PyData_Berlin/src/assemble_plots.py
           echo "Done."
-
-  archive-pdf:
-    runs-on: ubuntu-latest
-    needs: generate-pdf
-    steps:
     - name: Archive PDF
       uses: actions/upload-artifact@v2
       with:
