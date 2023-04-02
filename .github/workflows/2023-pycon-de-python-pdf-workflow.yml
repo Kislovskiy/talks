@@ -4,30 +4,23 @@ on:
     branches: [2023-pycon-de*]
 
 jobs:
-  generate-pdf:
+  archive-pdf:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Setup conda environment
-      uses: conda-incubator/setup-miniconda@v2
+      uses: conda-incubator/setup-miniconda@v3
       with:
         environment-file: 2023_PyData_Berlin/environment.yml
         activate-environment: 2023_PyData_Berlin
         auto-activate-base: false
     - name: Generate PDF
       shell: bash -l {0}
-      run: |
-          which python
-          pwd
-          ls -al
-          ls -al 2023_PyData_Berlin
-          ls -al 2023_PyData_Berlin/src
-          python 2023_PyData_Berlin/src/assemble_plots.py
-          echo "Done."
+      run: python 2023_PyData_Berlin/src/assemble_plots.py
     - name: Archive PDF
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: assembled.pdf
         path: 2023_PyData_Berlin/results/assembled.pdf
