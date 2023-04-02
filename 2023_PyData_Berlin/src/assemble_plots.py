@@ -11,6 +11,7 @@ def main():
     path_to_assembled_pdf = (
         Path(__file__).parent.parent.joinpath("results").joinpath("assembled.pdf")
     )
+    path_to_assembled_pdf.mkdir(parents=True, exist_ok=True)
     with PdfPages(path_to_assembled_pdf) as pdf:
         for file in Path(__file__).parent.glob("plot_*.py"):
             spec = spec_from_file_location("src", file)
