@@ -20,6 +20,11 @@ jobs:
       shell: bash -l {0}
       run: |
           which python
+          pwd
+          ls -al
+          ls -al 2023_PyData_Berlin
+          ls -al 2023_PyData_Berlin/src
+          ls -al 2023_PyData_Berlin/results
           python 2023_PyData_Berlin/src/assemble_plots.py
 
     - name: Archive PDF
