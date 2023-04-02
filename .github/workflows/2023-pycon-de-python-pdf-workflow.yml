@@ -16,6 +16,7 @@ jobs:
         environment-file: 2023_PyData_Berlin/environment.yml
         activate-environment: 2023_PyData_Berlin
     - name: Generate PDF
+      shell: bash -l {0}
       run: python 2023_PyData_Berlin/src/assemble_plots.py
     - name: Archive PDF
       uses: actions/upload-artifact@v3
