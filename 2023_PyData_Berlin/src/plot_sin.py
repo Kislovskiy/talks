@@ -18,5 +18,5 @@ if __name__ == "__main__":
     results_dir.mkdir(parents=True, exist_ok=True)
     fig = plot_sin()
     fig.savefig(
-        f"{results_dir}/sin.pdf", format="pdf", bbox_inches="tight", pad_inches=0.5
+        f"{results_dir}/sin.svg", format="svg", bbox_inches="tight", pad_inches=0.5
     )

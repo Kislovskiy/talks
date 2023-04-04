@@ -18,5 +18,5 @@ if __name__ == "__main__":
     results_dir.mkdir(parents=True, exist_ok=True)
     fig = plot_cos()
     fig.savefig(
-        f"{results_dir}/cos.pdf", format="pdf", bbox_inches="tight", pad_inches=0.5
+        f"{results_dir}/cos.svg", format="svg", bbox_inches="tight", pad_inches=0.5
     )

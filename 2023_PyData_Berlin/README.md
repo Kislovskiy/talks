@@ -10,7 +10,7 @@ conda env create -f environment.yml
 ## Galery
 
 ### Sine
-![sine](results/sin.pdf)
+![sine](results/sin.svg)
 
 ### Cosine
-![cosine](results/cos.pdf)
+![cosine](results/cos.svg)
