@@ -6,3 +6,11 @@
 ```
 conda env create -f environment.yml
 ```
+
+## Galery
+
+### Sine
+![sine](results/sin.pdf)
+
+### Cosine
+![cosine](results/cos.pdf)
