@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 
 
 def plot_sin():
+    plt.xkcd()
     fig, ax = plt.subplots()
     fnc = "sin"
     x = np.linspace(0, 10, 100)

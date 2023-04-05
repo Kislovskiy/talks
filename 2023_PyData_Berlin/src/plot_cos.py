@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 
 
 def plot_cos():
+    plt.xkcd()
     fig, ax = plt.subplots()
     fnc = "cos"
     x = np.linspace(0, 10, 100)
