@@ -44,4 +44,4 @@ for x in np.linspace(0, 1, 10):
     t.set_path_effects([Stroke(linewidth=lw, foreground=color)])
 
 plt.show()
-fig.savefig("../../results/static.png", dpi=300)
+# fig.savefig("../../results/static.png", dpi=300)
