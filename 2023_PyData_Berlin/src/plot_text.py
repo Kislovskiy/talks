@@ -50,8 +50,7 @@ def draw_text(axis, text, cmap):
 
 
 def despine_axis(axis):
-    """
-    """
+    """ """
     axis.spines[["top", "right", "bottom", "left"]].set_visible(False)
     plt.tick_params(
         axis="both", which="both", bottom=False, top=False, left=False, right=False
@@ -62,8 +61,13 @@ def despine_axis(axis):
     return axis
 
 
-if __name__ == "__main__":
+def save_word(word, cmap):
     fig, ax = plt.subplots(figsize=(8, 6), frameon=False)
-    draw_text(axis=despine_axis(ax), text="static", cmap=plt.cm.twilight)
-    static_path = Path(__file__).parent.parent.joinpath("results/static.pdf")
+    draw_text(axis=despine_axis(ax), text=f"{word}", cmap=cmap)
+    static_path = Path(__file__).parent.parent.joinpath(f"results/{word}.pdf")
     fig.savefig(static_path)
+
+
+if __name__ == "__main__":
+    save_word(word="static", cmap=plt.cm.twilight)
+    save_word(word="dynamic", cmap=plt.cm.terrain)
