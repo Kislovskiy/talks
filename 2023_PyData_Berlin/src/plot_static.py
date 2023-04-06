@@ -1,47 +1,69 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patheffects import Stroke, Normal
+from matplotlib.patheffects import Stroke
+from pathlib import Path
 
-fig = plt.figure(figsize=(8, 5))
-ax = fig.add_axes([0, 0, 1, 1], frameon=False)
-ax.set_xticklabels([])
-ax.set_yticklabels([])
-plt.tick_params(
-    axis="both", which="both", bottom=False, top=False, left=False, right=False
-)
-# family = "Pacifico"
-size = 100
-cmap = plt.cm.twilight
-text = "Static"
 
-for x in np.linspace(0, 1, 10):
-    lw, color = x * 225, cmap(1 - x)
-    t = ax.text(
-        0.5,
-        0.45,
-        text,
-        size=size,
-        color="none",
-        weight="bold",
-        va="center",
-        ha="center",
-        # family=family,
-        zorder=-lw,
+def draw_text(axis, text, cmap):
+    """_summary_
+
+    Args:
+        axis (_type_): _description_
+        text (_type_): _description_
+        cmap (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    family = "Pacifico"
+    size = 100
+
+    for x in np.linspace(0, 1, 15):
+        lw, color = x * 225, cmap(1 - x)
+        t = axis.text(
+            0.5,
+            0.45,
+            text,
+            size=size,
+            color="none",
+            weight="bold",
+            va="center",
+            ha="center",
+            family=family,
+            zorder=-lw,
+        )
+        t.set_path_effects([Stroke(linewidth=lw + 1, foreground="black")])
+        t = axis.text(
+            0.5,
+            0.45,
+            text,
+            size=size,
+            color="black",
+            weight="bold",
+            va="center",
+            ha="center",
+            family=family,
+            zorder=-lw + 1,
+        )
+        t.set_path_effects([Stroke(linewidth=lw, foreground=color)])
+    return axis
+
+
+def despine_axis(axis):
+    """
+    """
+    axis.spines[["top", "right", "bottom", "left"]].set_visible(False)
+    plt.tick_params(
+        axis="both", which="both", bottom=False, top=False, left=False, right=False
     )
-    t.set_path_effects([Stroke(linewidth=lw + 1, foreground="black")])
-    t = ax.text(
-        0.5,
-        0.45,
-        text,
-        size=size,
-        color="black",
-        weight="bold",
-        va="center",
-        ha="center",
-        # family=family,
-        zorder=-lw + 1,
-    )
-    t.set_path_effects([Stroke(linewidth=lw, foreground=color)])
+    axis.set_xticklabels([])
+    axis.set_yticklabels([])
 
-plt.show()
-# fig.savefig("../../results/static.png", dpi=300)
+    return axis
+
+
+if __name__ == "__main__":
+    fig, ax = plt.subplots(figsize=(8, 6), frameon=False)
+    draw_text(axis=despine_axis(ax), text="static", cmap=plt.cm.twilight)
+    static_path = Path(__file__).parent.parent.joinpath("results/static.pdf")
+    fig.savefig(static_path)
