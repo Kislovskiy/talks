@@ -268,7 +268,11 @@ ax1.text(
     weight="light",
 )
 ax1.text(
-    0.95, 0.05, "Made with matplotlib", ha="right", va="top",
+    0.95,
+    0.05,
+    "Made with matplotlib",
+    ha="right",
+    va="top",
     # family="Source Sans Pro"
 )
 
