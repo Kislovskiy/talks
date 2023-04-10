@@ -50,6 +50,9 @@ drwxr-xr-x     - kislovskiy  6 Apr 17:26  └── tests
 .rw-r--r--   755 kislovskiy  6 Apr 17:26     └── test_transform_data.py
 ```
 
+### Common chart components
+![common chart](results/common_chart.svg)
+
 ### Sine
 ![sine](results/sin.svg)
 

@@ -24,7 +24,7 @@ def plot_sin():
 
     ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False, zorder=10)
     ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False, zorder=10)
-    
+
     return fig
 
 
@@ -32,6 +32,5 @@ if __name__ == "__main__":
     results_dir = Path(__file__).resolve().parent.parent.joinpath("results")
     results_dir.mkdir(parents=True, exist_ok=True)
     fig = plot_sin()
-    fig.savefig(
-        f"{results_dir}/sin.svg", format="svg", bbox_inches="tight", pad_inches=0.5
-    )
+    save_path = results_dir.joinpath("sin.svg")
+    fig.savefig(f"{save_path}", format="svg", bbox_inches="tight", pad_inches=0.5)
