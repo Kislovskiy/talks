@@ -64,7 +64,7 @@ def despine_axis(axis):
 def save_word(word, cmap):
     fig, ax = plt.subplots(figsize=(8, 6), frameon=False)
     draw_text(axis=despine_axis(ax), text=f"{word}", cmap=cmap)
-    static_path = Path(__file__).parent.parent.joinpath(f"results/{word}.pdf")
+    static_path = Path(__file__).parent.parent.joinpath("results", f"{word}.pdf")
     fig.savefig(static_path)
 
 
