@@ -52,8 +52,8 @@ if __name__ == "__main__":
     results_dir.mkdir(parents=True, exist_ok=True)
     fig = plot_cmap_waves()
     fig.savefig(
-        f"{results_dir.joinpath('cmap_waves.pdf')}",
-        format="pdf",
+        f"{results_dir.joinpath('cmap_waves.svg')}",
+        format="svg",
         bbox_inches="tight",
         pad_inches=0.5,
     )

@@ -15,8 +15,6 @@ To start:
 conda env create -f environment.yml
 ```
 
-## Galery
-
 ## General stracture of the project
 
 ```
@@ -51,8 +49,20 @@ conda env create -f environment.yml
 └── LICENSE
 ```
 
+# Galery of plots
+
+### Plot text
+![static](results/static.svg)
+![dynamic](results/dynamic.svg)
+
 ### Common chart components
 ![common chart](results/common_chart.svg)
+
+### Same data different colormaps
+![cmap_waves](results/cmap_waves.svg)
+
+### Don't trust the defaults
+![missleading_charts](results/missleading_charts.svg)
 
 ### Sine
 ![sine](results/sin.svg)

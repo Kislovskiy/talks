@@ -119,5 +119,5 @@ if __name__ == "__main__":
     results_dir = Path(__file__).resolve().parent.parent.joinpath("results")
     results_dir.mkdir(parents=True, exist_ok=True)
     fig = plot_missleading_chart()
-    save_path = results_dir.joinpath("missleading_charts.pdf")
-    fig.savefig(f"{save_path}", format="pdf", bbox_inches="tight", pad_inches=0.5)
+    save_path = results_dir.joinpath("missleading_charts.svg")
+    fig.savefig(f"{save_path}", format="svg", bbox_inches="tight", pad_inches=0.5)
