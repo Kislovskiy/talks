@@ -2,19 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patheffects import Stroke
 from pathlib import Path
+from plotting_utils import despine, remove_ticks
 
 
 def draw_text(axis, text, cmap):
-    """_summary_
-
-    Args:
-        axis (_type_): _description_
-        text (_type_): _description_
-        cmap (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
     family = "Pacifico"
     size = 100
 
@@ -49,25 +40,36 @@ def draw_text(axis, text, cmap):
     return axis
 
 
-def despine_axis(axis):
-    """ """
-    axis.spines[["top", "right", "bottom", "left"]].set_visible(False)
-    plt.tick_params(
-        axis="both", which="both", bottom=False, top=False, left=False, right=False
-    )
-    axis.set_xticklabels([])
-    axis.set_yticklabels([])
-
-    return axis
-
-
 def save_word(word, cmap):
     fig, ax = plt.subplots(figsize=(8, 6), frameon=False)
-    draw_text(axis=despine_axis(ax), text=f"{word}", cmap=cmap)
+    draw_text(axis=ax, text=f"{word}", cmap=cmap)
+    despine(ax, which_spines=["top", "left", "bottom", "right"])
+    remove_ticks(ax)
     static_path = Path(__file__).parent.parent.joinpath("results", f"{word}.pdf")
     fig.savefig(static_path)
 
 
+def plot_static_word():
+    fig, ax = plt.subplots(figsize=(8, 6), frameon=False)
+    draw_text(axis=ax, text="static", cmap=plt.cm.twilight)
+    despine(ax, which_spines=["top", "left", "bottom", "right"])
+    remove_ticks(ax)
+    return fig
+
+
+def plot_dynamic_word():
+    fig, ax = plt.subplots(figsize=(8, 6), frameon=False)
+    draw_text(axis=ax, text="dynamic", cmap=plt.cm.terrain)
+    despine(ax, which_spines=["top", "left", "bottom", "right"])
+    remove_ticks(ax)
+    return fig
+
+
 if __name__ == "__main__":
-    save_word(word="static", cmap=plt.cm.twilight)
-    save_word(word="dynamic", cmap=plt.cm.terrain)
+    fig = plot_static_word()
+    static_path = Path(__file__).parent.parent.joinpath("results", "static.svg")
+    fig.savefig(static_path)
+
+    fig = plot_dynamic_word()
+    dynamic_path = Path(__file__).parent.parent.joinpath("results", "dynamic.svg")
+    fig.savefig(dynamic_path)
