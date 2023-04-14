@@ -9,8 +9,10 @@ from plotting_utils import (
     add_labels_to_lines,
 )
 
+
 def y(x):
     return x + np.sin(x * x * 8) / 4
+
 
 def plot_common_chart():
     plt.xkcd()
@@ -63,5 +65,5 @@ if __name__ == "__main__":
     results_dir = Path(__file__).resolve().parent.parent.joinpath("results")
     results_dir.mkdir(parents=True, exist_ok=True)
     fig = plot_common_chart()
-    save_path = results_dir.joinpath("common_chart.svg")
-    fig.savefig(f"{save_path}", format="svg", bbox_inches="tight", pad_inches=0.5)
+    save_path = results_dir.joinpath("common_chart.pdf")
+    fig.savefig(f"{save_path}", format="pdf", bbox_inches="tight", pad_inches=0.5)
