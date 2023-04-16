@@ -75,28 +75,29 @@ conda env create -f environment.yml
 
 **The bumps in the road: A retrospective on my data visualisation mistakes**
 
-## Slide 1 - 2
-Hi, I am Artem Kislovskiy a software engineer at day and pysicist at night.
-Past 8 years I've been working on data visualisation projects in different domains, starting from Computational Fluid Dynamics, to Buisness Analytics.
-When I first started a datavisualisation project I was very excited, and thought that it would be a piece of cake.
-As you may deduce from the title of my talk, it was not the case.
-The bumps in the road were many, and the journey was turbulent.
+## Slide 1
+Hi, I am Artem Kislovskiy a software engineer at day and physicist at night.
+Past 8 years I've been working on data visualisation projects in different domains, starting from Computational Fluid Dynamics, to Business Analytics.
+
+## Slide 2
+When I first started a data visualisation project I was very excited, and thought that it would be a piece of cake.
+As you may deduce from the title of my talk, it was not the case. The bumps in the road were many, and the journey was turbulent.
 
 ## Slide 3
 When I look back at my journey, I see that I didn't know the rules for better data visualisations.
 I spent too much time on the wrong things, and I didn't have a clear vision of what I was trying to achieve.
-I was completelly lost in how to use version control for my plotting code, which ended up in a mess of notebooks and scripts.
+I was completely lost in how to use version control for my plotting code, which ended up in a mess of notebooks and scripts.
 I was sure that visualisations are unbreakable, and I didn't have a backup plan.
 I made a mistake of not setting up monitoring, and I didn't discovered the problem until it was too late.
 But I've learned a lot, and I want to share my experience with you.
 
 ## Slide 4
-I am very easy to inspire, and when someone talks about data exploration it's hard for me to resist.
+I am very easy to inspire, and when someone talks about data visualisation it's hard for me to resist.
 I want to start coding right away.
-I draw coloreful images in my head, and I want to see them on the screen.
+I draw colourful images in my head, and I want to see them on the screen.
 I can spend hours on prettifying the plot and making it look nice.
 However, I've learned that it's not the best way to start a data visualisation project.
-Often, people have completelly different expectations of what the visualisation should look like.
+Often, people have completely different expectations of what the visualisation should look like.
 Maybe they even don't need a visualisation at all.
 In some cases they need an interactive dashboard, in other cases they need a report, and in some cases they need to learn something from the data.
 I love matplotlib, most of the graphs I've made for this presentation were made with it, but it's not the best tool for every job.
@@ -119,20 +120,23 @@ And again, The best visualisation software or library is the one that allows you
 
 ## Slide 5
 Enough hypothetical examples, let's get to the code!
-I assume that everyone in the room knows what is a version contorol and knows git.
+I assume that everyone in the room knows what is a version control and knows git.
 If you don't, I recommend you to invest time in learning it.
-Together with continious integration principles it can automate you out of routine tasks, and it will make your life easier.
+Together with continuous integration principles it can automate you out of routine tasks, and it will make your life easier.
 
 For data visualisation projects I start simple, but you could notice a few things.
 First is a directory with all the code for the project.
 Second is a .github folder, that contains a file with a workflow for generating a galery.pdf file.
 The workflow is triggered when I push a commit.
-It generates a galery.pdf file with all the plots from the repository.
+
+## Slide 6
+
+Continuous integration pipeline generates a galery.pdf file with all the plots from the repository.
 It's very handy to have a gallery.pdf as a reference of plots you have, but you can also see how the plots change over time, and easily revert some of them to previous versions if necessary.
 For the same reason I like to include .svg files in the README.md file, however the README could become bulky if you have a lot of plots, that's why I prefer to have a separate file with all the plots, and in README only the most important ones.
 
 
-## Slide 6
+## Slide 7
 
 In my projects I find myself using mostly line charts (scatter plots), bar charts, and tables.
 If you remember from the list of my mistakes, I didn't know the rules for better data visualisations.
@@ -149,11 +153,14 @@ They exist, I first learned them from Nicolas P. Rougier's book "Scientific Visu
 * Rule 10: Get the Right Tool
 They are worth a separate talk, but we'll see them in action in the next slides.
 
-## Slide 7
+## Slide 8
+"Less is more" is the thing that I keep in mind when I'm making a plot.
+The idea is that you should not try to show too much data at once, and you should not try to make your plot look too fancy.
+Let's go through the journey of transforming the graph together, by modifying the bar chart.
+
+## Slide 9
 
 Consider the basic line chart.
-Remember everything in Python is an object, and matplotlib is no exception.
-Your coding journey always starts with creating a figure and axes objects.
 
 There are a couple of things that are different form the default matplotib settings.
 First you may notice that title is left aligned.
@@ -169,6 +176,25 @@ When you're trying to show too much data at once, you may end up not showing any
 
 ## Slide 10
 
+Remember everything in Python is an object, and matplotlib is no exception.
+Your coding journey always starts with creating a figure and axes objects.
+
+
+## Slide 11
+
+The object oriented approach allows you to create a function that returns a figure object.
+Later you, or the CI pipeline can use this function to create a figure and add it to the gallery.
+This is a good practice because it allows you to reuse the code, and it makes it easier to maintain.
+At this step I want you to note a few things about the code.
+As we just learned that visualisations in matplotlib are objects, we can modify them after they are created.
+In this example the object that is modified a lot is the axes object, because it's the one that contains the plot.
+Figure object is a container for the axes object, and it's not modified that much.
+
+You could also notice that I like to keep my code executable, so I put the code that generates the plot in the if __name__ == "__main__" block.
+
+
+## Slide 12
+
 Another argument for using data visualisation is to verify and validate numbers.
 Buisiness people for who we usually create visualisation are busy and don't have enought time to decipher a cryptic figures.
 What they want is to get a clear demonstation that something worthwhile and interesing was acomplished, they want to see KPI's.
@@ -176,7 +202,7 @@ It's very tempting to use an average value as some sort of KPI, but it's not alw
 I recently found this amazing article that shows how completelly different datasets could have the same statistics.
 Spend some time verifing your data pipelines.
 
-## Slide 11
+## Slide 13
 
 Now let's get back to structure of the data visualisation project.
 The repository contains the src, tests, data, and results directories.
@@ -188,7 +214,7 @@ This script is called by the workflow that generates the gallery.pdf file.
 Having gallery.pdf file is very handy in big projects, because it allows you to see all the plots in one place.
 It also works as a test, because if you change something in the code, and the gallery.pdf file changes, you know that something is wrong if the workflow fails.
 
-## Slide 12-14
+## Slide 14
 
 gallery.pdf is a better alternative to endless Jupyter notebooks.
 I like Jupyter notebooks.
@@ -204,16 +230,35 @@ This experience has taught me to stay away from Jupyter, however I still use it 
 The better approach is to separate data processing and data visualisation.
 And use object oriented approach to data visualisation.
 
-Let me explain what I mean by looking first into bad example.
-Here are two Jupyter notebook cells where data is coupled with visualisation.
-If I copy and paste the cell and change the data, the beautiful visualisation code will not work, I need to tune it.
-Imagine if I need to experiment with colors and line styles, I would copy and paste this code N times to different cells.
-The alternative to this is to extract functions.
-The visualisation function is now decoupled from the data, and it can be reused.
-It takes data and axis as arguments, and it returns the axis with the plot.
-And If I would experiment with colors and style, I would itterate over the parameters and plot the data side by side.
+Imagine if I need to experiment with colours and line styles, I would copy and paste this code N times to different cells.
 
 ## Slide 15
+
+Here is the alternative to a jupyter notebook with three cells of code to generate the plot.
+You could see here what I mean by decoupling data processing and visualisation.
+There are three functions.
+The plot_cmap_wawes is the one that demonstrates the decoupling of data processing and visualisation.
+I have to respect only one convention in my data, it should come in a form of a pandas dataframe, and contain a column named "X" and a column named "Y".
+I can call visuslize_curves function 3 times with different parameters and pick the colorscheme I like.
+This is a toy example, but in a real project you could find yourself in a situation where you need to experiment with different parameters.
+It's extremely easy to do it with this approach.
+Having visualisations side by side is also nice, because you can compare them and see which one is better.
+
+## Slide 16
+
+Let's take another example why it could be useful.
+It also illustrates the importance of "Do Not Trust the Defaults", and "Don't misslead the reader" rule, from the list of rules that I showed you at the beginning of the talk.
+The data is the same, but visualisation is different.
+It shows the Global temperature change from 1880 to 2023.
+With data we can easily create a misleading visualisations.
+
+But I brought this example with a purpose to demonstrate that it has the same building blocks as the previous examples.
+But you've also learned the technique to experiment with data visualisations.
+Everytime I define a new function, I commit changes imidiately.
+This gives me lot's of freedom to experiment with the code, and revert changes if I don't like them, without overhead of copying and pasting code.
+
+
+# Slide 17
 
 Tests are vitally important for data visualisation projects.
 They may seem redundant, but they could save you a lot of time in a long run.
@@ -221,14 +266,12 @@ You know how your data looks like.
 You could test that your processing will fail if datatypes are wrong, or if the data is missing.
 You could test that your figure is not empty and contain N number of lines.
 
-Add action: Bad example and Good example.
+## Slide 18
 
+When we decouple data processing and visualisation, it's easy to use a source control, like git.
+But what I like the most is going back in history and seeing how the visualisation evolved.
 
-## Slide 16
-
-When we decopule data processing and visualisation, it's easy to use a source control, like git.
-
-## Slide 17
+## Slide 19
 
 Remember I said that I made a mistake of not setting up monitoring, and I didn't discovered the problem until it was too late.
 Welcome another mistake: not setting up monitoring.
@@ -240,24 +283,34 @@ You could consider sending yourself a notification when something finished succe
 And as we discussed earlier you could use GitHub actions to verify the data visualisation code.
 The pipeline should fail if something is wrong with the code, or tests are failing.
 
-## Slide 18
+## Slide 20
 
 Here is an example of assemble_plots.py script.
+It could look a bit complicated, but it's not.
+If you read the script from top to bottom, you will see that first we create a pdf page context, then we iterate over the plots, and for each plot we call the plot_ function, and then we save the page.
 
-TODO add a description
 
-## Slide 19 (I think I need to remove it)
-Sometimes we work with visual dasboards in Tableau or Grafana.
+## Slide 21
+I know that some of you here could use a different programming language, or maybe using a UI tool like Tableau or Grafana to visualise data.
 Coming back to my very first story about knowing your audience, you could consider creating a duplicate of your production dashboard and call it staging dashboard.
-I find it very practical to introdice changes first in staging dashboard, discuss them with the stakeholders, and then push them to production dashboard.
+I find it very practical to introduce changes first in staging dashboard, discuss them with the stakeholders, and then push them to production dashboard.
 
-## Slide 20
+## Slide 22
 Stress test your code to know the limits.
 Once I found myself writing a script that was working correctly, but it was rediculously slow.
 I thought that it's fine. I'll just run it once a day.
 But only after I tried to execute it on real size data, I realised that it was not only taking 10 hours to finish, but also caused out of memory exceptions.
 I had to rewrite the code to make it more efficient and learn about map-reduce paradigm. But this is another story.
 
-## Slide 21
-Now let's recap what we've learned today.
+## Slide 23
+
+If I look back at my journey, I can see that many mistakes were made, but It's fine, I'm still learning.
+I believe, you remember that working collaboratively is a key to success, and you could save a lot of time by understanding what exactly you need to demonstrate with your visualisation.
+When I talk about reproducibility, I want to always reproduce any of the plot's I've created in the past in the order of minutes, not hours.
+I found that Python files work best for me, than Jupyter notebooks, but the best tool is the one that you are comfortable with the most.
+Git is a must have for me, because it allows me to go back in time and see how the visualisation evolved.
+Monitoring is something that gives me a piece of mind, because I know that if something goes wrong, I will be notified.
+I have a separate channel in messenger tool at work where everyday a number of cron jobs report the status of data collection, data processing, and availability of datasets, I know that everything is green there, I can sleep well. If read, I quickly go and see what's wrong.
+And we looked at the example of continuous delivery pipeline, where we could use GitHub actions to verify the data visualisation code.
+
 
