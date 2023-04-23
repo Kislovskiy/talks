@@ -16,10 +16,22 @@ def add_arrows_to_axis(axis: plt.Axes) -> plt.Axes:
     xmin, xmax = axis.get_xlim()
     ymin, ymax = axis.get_ylim()
     axis.plot(
-        xmin, ymax, "^k", transform=axis.get_yaxis_transform(), clip_on=False, zorder=10
+        xmin,
+        ymax,
+        "^k",
+        transform=axis.get_yaxis_transform(),
+        clip_on=False,
+        zorder=10,
+        label="y_arrow",
     )
     axis.plot(
-        xmax, ymin, ">k", transform=axis.get_xaxis_transform(), clip_on=False, zorder=10
+        xmax,
+        ymin,
+        ">k",
+        transform=axis.get_xaxis_transform(),
+        clip_on=False,
+        zorder=10,
+        label="x_arrow",
     )
     return axis
 
