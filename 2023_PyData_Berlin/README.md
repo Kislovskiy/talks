@@ -1,16 +1,21 @@
 [![Generate PDF](https://github.com/Kislovskiy/talks/actions/workflows/2023-pycon-de-python-pdf-workflow.yml/badge.svg?branch=2023-pycon-de)](https://github.com/Kislovskiy/talks/actions/workflows/2023-pycon-de-python-pdf-workflow.yml)
+
 # The bumps in the road: A retrospective on my data visualisation mistakes
 
 ## TL;DR
+
 * 🚀 Apply software engineering best practices can greatly enhance productivity in data visualization projects
 * 🤝 Working collaboratively with partners can help generate value quickly
 * 🔬 Aim for reproducibility to ensure accuracy and consistency in the visualization results
 * 💾 Backup the data to prevent loss of important information
-* 🗂️ Versioning the code enables better tracking of changes and makes it easier to revert to previous versions if necessary
+* 🗂️ Versioning the code enables better tracking of changes and makes it easier to revert to previous versions if
+  necessary
 * 🕵️‍♀️ Setting up monitoring ensures that any errors or issues are detected and resolved quickly
-* 🚚 Establishing a continuous delivery pipeline can provide efficient and timely delivery of data visualizations to customers
+* 🚚 Establishing a continuous delivery pipeline can provide efficient and timely delivery of data visualizations to
+  customers
 
 To start:
+
 ```
 conda env create -f environment.yml
 ```
@@ -52,38 +57,48 @@ conda env create -f environment.yml
 # Galery of plots
 
 ### Plot text
+
 ![static](results/static.svg)
 ![dynamic](results/dynamic.svg)
 
 ### Common chart components
+
 ![common chart](results/common_chart.svg)
 
 ### Same data different colormaps
+
 ![cmap_waves](results/cmap_waves.svg)
 
 ### Don't trust the defaults
+
 ![missleading_charts](results/missleading_charts.svg)
 
 ### Sine
+
 ![sine](results/sin.svg)
 
 ### Cosine
-![cosine](results/cos.svg)
 
+![cosine](results/cos.svg)
 
 # Transcript
 
 **The bumps in the road: A retrospective on my data visualisation mistakes**
 
 ## Slide 1
+
 Hi, I am Artem Kislovskiy a software engineer at day and physicist at night.
-Past 8 years I've been working on data visualisation projects in different domains, starting from Computational Fluid Dynamics, to Business Analytics.
+Past 8 years I've been working on data visualisation projects in different domains, starting from Computational Fluid
+Dynamics, to Business Analytics.
 
 ## Slide 2
+
 When I first started a data visualisation project I was very excited, and thought that it would be a piece of cake.
-As you may deduce from the title of my talk, it was not the case. The bumps in the road were many, and the journey was turbulent.
+As you may deduce from the title of my talk, it was not the case. The bumps in the road were many, and the journey was
+turbulent.
 
 ## Slide 3
+
 When I look back at my journey, I see that I didn't know the rules for better data visualisations.
 I spent too much time on the wrong things, and I didn't have a clear vision of what I was trying to achieve.
 I was completely lost in how to use version control for my plotting code, which ended up in a mess of notebooks and
@@ -93,6 +108,7 @@ I made a mistake of not setting up monitoring, and I didn't discover the problem
 But I've learned a lot, and I want to share my experience with you.
 
 ## Slide 4
+
 I am very easy to inspire, and when someone talks about data visualisation it's hard for me to resist.
 I want to start coding right away.
 I draw colourful images in my head, and I want to see them on the screen.
@@ -100,21 +116,27 @@ I can spend hours on prettifying the plot and making it look nice.
 However, I've learned that it's not the best way to start a data visualisation project.
 Often, people have completely different expectations of what the visualisation should look like.
 Maybe they even don't need a visualisation at all.
-In some cases they need an interactive dashboard, in other cases they need a report, and in some cases they need to learn something from the data.
-I love matplotlib, most of the graphs I've made for this presentation were made with it, but it's not the best tool for every job.
+In some cases they need an interactive dashboard, in other cases they need a report, and in some cases they need to
+learn something from the data.
+I love matplotlib, most of the graphs I've made for this presentation were made with it, but it's not the best tool for
+every job.
 But I'll stick to matplotlib for this presentation, because it's the most popular tool for data visualisation.
 It also teaches to apply object-oriented approach to data visualisation.
 
 Static visualisations are usually created for reports, and they are awesome for communicating results.
-Dynamic visualisations usually created for interactive dashboards, and they are very helpful in exploratory data analysis.
+Dynamic visualisations usually created for interactive dashboards, and they are very helpful in exploratory data
+analysis.
 
 But remember before coding anything, you need to have a clear vision of what you are trying to achieve.
 That's why the first graph I make is always the one drawn on a piece of paper.
 Think how you need to display the data to answer the question.
-If you were to compare two different configurations of the application deployed for A/B testing, you would probably want to see the difference between the two over time.
+If you were to compare two different configurations of the application deployed for A/B testing, you would probably want
+to see the difference between the two over time.
 And line chart is a good choice for that.
-Or in a different case, you may want to compare different data processing algorithms, and you'll use a bar chart for this.
-Also consider the extreme cases, for example when time of the first algorithm is significantly greater than the time of the second algorithm.
+Or in a different case, you may want to compare different data processing algorithms, and you'll use a bar chart for
+this.
+Also consider the extreme cases, for example when time of the first algorithm is significantly greater than the time of
+the second algorithm.
 Experiment on paper, and then you can start coding.
 
 And again, The best visualisation software or library is the one that allows you to make the figures you need.
@@ -135,9 +157,11 @@ The workflow is triggered when I push a commit.
 ## Slide 6
 
 Continuous integration pipeline generates a galery.pdf file with all the plots from the repository.
-It's very handy to have a gallery.pdf as a reference of plots you have, but you can also see how the plots change over time, and easily revert some of them to previous versions if necessary.
-For the same reason I like to include .svg files in the README.md file, however the README could become bulky if you have a lot of plots, that's why I prefer to have a separate file with all the plots, and in README only the most important ones.
-
+It's very handy to have a gallery.pdf as a reference of plots you have, but you can also see how the plots change over
+time, and easily revert some of them to previous versions if necessary.
+For the same reason I like to include .svg files in the README.md file, however the README could become bulky if you
+have a lot of plots, that's why I prefer to have a separate file with all the plots, and in README only the most
+important ones.
 
 ## Slide 7
 
@@ -145,6 +169,7 @@ In my projects I find myself using mostly line charts (scatter plots), bar chart
 If you remember from the list of my mistakes, I didn't know the rules for better data visualisations.
 They exist, I first learned them from Nicolas P. Rougier's book "Scientific Visualisation: Python + Matplotlib", which I
 highly recommend.
+
 * Rule 1: Know Your Audience
 * Rule 2: Identify Your Message
 * Rule 3: Adapt the Figure to the Support Medium
@@ -155,11 +180,13 @@ highly recommend.
 * Rule 8: Avoid "Chartjunk"
 * Rule 9: Message Trumps Beauty
 * Rule 10: Get the Right Tool
-They are worth a separate talk, but we'll see them in action in the next slides.
+  They are worth a separate talk, but we'll see them in action in the next slides.
 
 ## Slide 8
+
 "Less is more" is the thing that I keep in mind when I'm making a plot.
-The idea is that you should not try to show too much data at once, and you should not try to make your plot look too fancy.
+The idea is that you should not try to show too much data at once, and you should not try to make your plot look too
+fancy.
 Let's go through the journey of transforming the graph together, by modifying the bar chart.
 
 ## Slide 9
@@ -179,7 +206,6 @@ When you're trying to show too much data at once, you may end up not showing any
 Remember everything in Python is an object, and matplotlib is no exception.
 Your coding journey always starts with creating a figure and axes objects.
 
-
 ## Slide 11
 
 The object-oriented approach allows you to create a function that returns a figure object.
@@ -192,7 +218,6 @@ Figure object is a container for the axes object, and it's not modified that muc
 
 You could also notice that I like to keep my code executable, so I put the code that generates the plot in
 the `if __name__ == "__main__"` block.
-
 
 ## Slide 12
 
@@ -223,18 +248,22 @@ something is wrong if the workflow fails.
 gallery.pdf is a better alternative to endless Jupyter notebooks.
 I like Jupyter notebooks.
 I thought that they are the best way to share results.
-It was the case until I spend half a day trying to find a specific plot in a directory with a huge number of notebooks with similar names where each notebook had lot's of cells.
+It was the case until I spend half a day trying to find a specific plot in a directory with a huge number of notebooks
+with similar names where each notebook had lot's of cells.
 It was a nightmare.
-I also tend to copy and paste code from one notebook to another and from one cell to another cell, and I end up with a lot of duplicate code.
+I also tend to copy and paste code from one notebook to another and from one cell to another cell, and I end up with a
+lot of duplicate code.
 The horror was when I had to change something in the code, and I had to do it in 10 different notebooks.
 At that point I thought that it's easier and faster to run a marathon than to change something in my code.
 It blocked creativity and productivity.
-This experience has taught me to stay away from Jupyter, however I still use it a lot for prototyping and for quick experiments.
+This experience has taught me to stay away from Jupyter, however I still use it a lot for prototyping and for quick
+experiments.
 
 The better approach is to separate data processing and data visualisation.
 And use object oriented approach to data visualisation.
 
-Imagine if I need to experiment with colours and line styles, I would copy and paste this code N times to different cells.
+Imagine if I need to experiment with colours and line styles, I would copy and paste this code N times to different
+cells.
 
 ## Slide 15
 
@@ -264,7 +293,6 @@ But you've also learned the technique to experiment with data visualisations.
 Everytime I define a new function, I commit changes immediately.
 This gives me lots of freedom to experiment with the code, and revert changes if I don't like them, without overhead of
 copying and pasting code.
-
 
 # Slide 17
 
@@ -297,13 +325,17 @@ The pipeline should fail if something is wrong with the code, or tests are faili
 
 Here is an example of assemble_plots.py script.
 It could look a bit complicated, but it's not.
-If you read the script from top to bottom, you will see that first we create a pdf page context, then we iterate over the plots, and for each plot we call the plot_ function, and then we save the page.
-
+If you read the script from top to bottom, you will see that first we create a pdf page context, then we iterate over
+the plots, and for each plot we call the plot_ function, and then we save the page.
 
 ## Slide 21
-I know that some of you here could use a different programming language, or maybe using a UI tool like Tableau or Grafana to visualise data.
-Coming back to my very first story about knowing your audience, you could consider creating a duplicate of your production dashboard and call it staging dashboard.
-I find it very practical to introduce changes first in staging dashboard, discuss them with the stakeholders, and then push them to production dashboard.
+
+I know that some of you here could use a different programming language, or maybe using a UI tool like Tableau or
+Grafana to visualise data.
+Coming back to my very first story about knowing your audience, you could consider creating a duplicate of your
+production dashboard and call it staging dashboard.
+I find it very practical to introduce changes first in staging dashboard, discuss them with the stakeholders, and then
+push them to production dashboard.
 
 ## Slide 22
 
