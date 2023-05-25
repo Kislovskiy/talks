@@ -1,7 +1,7 @@
 name: Generate Gallery PDF
 on:
   push:
-    branches: [2023-pycon-de*]
+    branches: [ 2023-PyConIT* ]
 
 jobs:
   generate-pdf:
@@ -13,8 +13,8 @@ jobs:
       - name: Setup conda environment
         uses: conda-incubator/setup-miniconda@v2
         with:
-          environment-file: 2023_PyData_Berlin/environment.yml
-          activate-environment: 2023_PyData_Berlin
+          environment-file: 2023_PyConIT/environment.yml
+          activate-environment: 2023_PyConIT
       - name: Run tests
         shell: bash -el {0}
         run:
@@ -22,9 +22,9 @@ jobs:
       - name: Generate PDF
         shell: bash -el {0}
         run:
-          python 2023_PyData_Berlin/src/assemble_plots.py
+          python 2023_PyConIT/src/assemble_plots.py
       - name: Archive PDF
         uses: actions/upload-artifact@v3
         with:
           name: galery.pdf
-          path: 2023_PyData_Berlin/results/galery.pdf
+          path: 2023_PyConIT/results/galery.pdf
