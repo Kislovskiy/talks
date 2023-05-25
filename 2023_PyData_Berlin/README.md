@@ -4,15 +4,14 @@
 
 ## TL;DR
 
-* 🚀 Apply software engineering best practices can greatly enhance productivity in data visualization projects
-* 🤝 Working collaboratively with partners can help generate value quickly
-* 🔬 Aim for reproducibility to ensure accuracy and consistency in the visualization results
-* 💾 Backup the data to prevent loss of important information
-* 🗂️ Versioning the code enables better tracking of changes and makes it easier to revert to previous versions if
-  necessary
-* 🕵️‍♀️ Setting up monitoring ensures that any errors or issues are detected and resolved quickly
-* 🚚 Establishing a continuous delivery pipeline can provide efficient and timely delivery of data visualizations to
-  customers
+* 🚀 Applying software engineering best practices can significantly improve productivity in data visualisation projects.
+* 🤝 Collaborative efforts can expedite value creation.
+* 🔬 Striving for reproducibility guarantees accuracy and consistency in the visualisation outcomes.
+* 💾 Backing up data is crucial to avoid the loss of significant information.
+* 🗂️ Version Control aids in meticulous change tracking and facilitates reverting to previous versions when required.
+* 🕵️‍♀️ Setting up monitoring is essential for swift detection and resolution of errors or issues.
+* 🚚 Establishing a continuous delivery pipeline ensures efficient and prompt delivery of data visualisations to
+  customers.
 
 To start:
 
@@ -249,7 +248,7 @@ gallery.pdf is a better alternative to endless Jupyter notebooks.
 I like Jupyter notebooks.
 I thought that they are the best way to share results.
 It was the case until I spend half a day trying to find a specific plot in a directory with a huge number of notebooks
-with similar names where each notebook had lot's of cells.
+with similar names where each notebook had lots of cells.
 It was a nightmare.
 I also tend to copy and paste code from one notebook to another and from one cell to another cell, and I end up with a
 lot of duplicate code.
@@ -353,8 +352,8 @@ I believe, you remember that working collaboratively is a key to success, and yo
 understanding what exactly you need to demonstrate with your visualisation.
 When I talk about reproducibility, I want to always reproduce any of the plot's I've created in the past in the order of
 minutes, not hours.
-I found that Python files work best for me, than Jupyter notebooks, but the best tool is the one that you are
-comfortable with the most.
+I found that Python files work best for me rather than Jupyter notebooks, but the best tool is the one with which you
+are most comfortable.
 Git is an absolute must-have for me, because it allows me to go back in time and see how the visualisation evolved.
 Monitoring is something that gives me a piece of mind, because I know that if something goes wrong, I will be notified.
 I have a separate channel in messenger tool at work where every day a number of cron jobs report the status of data
