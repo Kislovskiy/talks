@@ -1,0 +1,7 @@
+name: 2023_PyConIT
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - matplotlib
+  - pytest

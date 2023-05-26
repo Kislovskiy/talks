@@ -1,4 +1,4 @@
-name: Generate PDF
+name: Generate Gallery PDF
 on:
   push:
     branches: [2023-pycon-de*]
