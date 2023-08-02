@@ -1,5 +1,5 @@
-name: "2023 PyData Berlin Generate galery.pdf"
-run-name: "️2023 PyData Berlin on ${{ github.sha }}"
+name: "2023 PyData Berlin generate galery.pdf"
+run-name: "️2023 PyData Berlin (${{ github.sha }})"
 on:
   pull_request:
   push:
