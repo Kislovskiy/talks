@@ -1,5 +1,5 @@
 name: 2023 PyData Berlin Generate galery.pdf
-run-name: "️CI: ${{ github.event.head_commit.message }} (${{ github.sha }})"
+run-name: "️CI on git SHA: ${{ github.sha }}"
 on:
   pull_request:
   push:
