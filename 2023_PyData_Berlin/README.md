@@ -234,7 +234,7 @@ Spend some time verifying your data pipelines.
 
 Now let's get back to structure of the data visualisation project.
 The repository contains the src, tests, data, and results directories.
-I prefer to use conda for managing my environments, and I use the environment.yml file to specify the dependencies.
+I prefer to use venv for managing my environments, and I use the `requirements.txt` file to specify the dependencies.
 
 The src directory contains the python scripts for generating the plots.
 It also contains the `assemble_plots.py` script that assembles all the plots into a single pdf file.
