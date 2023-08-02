@@ -1,5 +1,5 @@
 name: 2023 PyData Berlin Generate galery.pdf
-run-name: "️CI on git SHA: ${{ github.sha }}"
+run-name: "️CI 2023 PyData Berlin on ${{ github.sha }}"
 on:
   pull_request:
   push:
