@@ -1,7 +1,0 @@
-name: 2023_PyData_Berlin
-dependencies:
-  - python=3.11
-  - numpy
-  - pandas
-  - matplotlib
-  - pytest

@@ -16,7 +16,8 @@
 To start:
 
 ```
-conda env create -f environment.yml
+python -m venv .venv
+source .venv/bin/activate
 ```
 
 ## General stracture of the project
@@ -28,7 +29,7 @@ conda env create -f environment.yml
 │     └── 2023-pycon-de-python-pdf-workflow.yml
 ├── 2023_PyData_Berlin
 │  ├── data
-│  ├── environment.yml
+│  ├── requirements.txt
 │  ├── README.md
 │  ├── results
 │  ├── src
