@@ -1,20 +1,24 @@
-name: Generate Gallery PDF
+name: 2023 PyData Berlin Generate galery.pdf
+run-name: "️CI: ${{ github.event.head_commit.message }} (${{ github.sha }})"
 on:
+  pull_request:
   push:
-    branches: [2023-pycon-de*]
+    branches: [ main, 2023-pycon-de*]
 
 jobs:
   generate-pdf:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Setup Python environment
         uses: actions/checkout@v3
-
-      - name: Setup conda environment
-        uses: conda-incubator/setup-miniconda@v2
+      - uses: actions/setup-python@v4
         with:
-          environment-file: 2023_PyData_Berlin/environment.yml
-          activate-environment: 2023_PyData_Berlin
+          python-version: '3.11'
+        run:
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+
       - name: Run tests
         shell: bash -el {0}
         run:
