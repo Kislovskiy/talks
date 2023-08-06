@@ -25,7 +25,7 @@ jobs:
       - name: Run Flake8
         shell: bash -el {0}
         run:
-          flake8 2023_PyData_Berlin
+          flake8 --config 2023_PyData_Berlin/.flake8 2023_PyData_Berlin
 
   test:
     name: 🕵 Test Python code
