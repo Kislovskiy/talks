@@ -21,7 +21,7 @@ jobs:
       - name: Run Black
         shell: bash -el {0}
         run:
-          black 2023_PyConIT --check 2023_PyConIT
+          black 2023_PyConIT --check
       - name: Run Flake8
         shell: bash -el {0}
         run:
