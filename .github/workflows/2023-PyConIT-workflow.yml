@@ -6,14 +6,14 @@ on:
     branches: [ main, 2023-PyConIT* ]
 
 jobs:
-  generate-pdf:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Python environment
         uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
       - name: Install dependencies
         run:
           pip install -r 2023_PyConIT/requirements.txt
@@ -21,6 +21,19 @@ jobs:
         shell: bash -el {0}
         run:
           pytest 2023_PyData_Berlin
+
+  PyConIT-Generate-pdf:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Setup Python environment
+        uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run:
+          pip install -r 2023_PyConIT/requirements.txt
       - name: Generate PDF
         shell: bash -el {0}
         run:
