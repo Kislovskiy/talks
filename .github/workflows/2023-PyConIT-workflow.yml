@@ -1,5 +1,5 @@
-name: "2023 PyConIT generate galery.pdf"
-run-name: "️2023 PyConIT (${{ github.sha }})"
+name: "2023 PyConIT 🇮🇹 generate galery.pdf"
+run-name: "️2023 PyConIT 🇮🇹 (${{ github.sha }})"
 on:
   pull_request:
   push:
@@ -14,14 +14,14 @@ jobs:
         uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: "3.11.4"
       - name: Install dependencies
         run:
           pip install -r 2023_PyConIT/requirements.txt
       - name: Run Black
         shell: bash -el {0}
         run:
-          black 2023_PyConIT
+          black 2023_PyConIT --check 2023_PyConIT
       - name: Run Flake8
         shell: bash -el {0}
         run:
@@ -35,14 +35,14 @@ jobs:
         uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: "3.11.4"
       - name: Install dependencies
         run:
           pip install -r 2023_PyConIT/requirements.txt
       - name: Run tests
         shell: bash -el {0}
         run:
-          pytest 2023_PyData_Berlin
+          pytest 2023_PyConIT
 
   PyConIT-Generate-pdf:
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: "3.11.4"
       - name: Install dependencies
         run:
           pip install -r 2023_PyConIT/requirements.txt
