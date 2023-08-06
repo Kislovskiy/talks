@@ -6,7 +6,29 @@ on:
     branches: [ main, 2023-PyConIT* ]
 
 jobs:
+  lint:
+    name: 🚨 Lint Python code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python environment
+        uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run:
+          pip install -r 2023_PyConIT/requirements.txt
+      - name: Run Black
+        shell: bash -el {0}
+        run:
+          black 2023_PyConIT
+      - name: Run Flake8
+        shell: bash -el {0}
+        run:
+          flake8 2023_PyConIT
+
   test:
+    name: 🕵 Test Python code
     runs-on: ubuntu-latest
     steps:
       - name: Setup Python environment
@@ -24,7 +46,7 @@ jobs:
 
   PyConIT-Generate-pdf:
     runs-on: ubuntu-latest
-    needs: test
+    needs: [ lint, test ]
     steps:
       - name: Setup Python environment
         uses: actions/checkout@v3
