@@ -12,12 +12,11 @@
 # $ cp frame-35.png frame-40.png
 # $ convert -delay 100 *.png less-is-more.gif
 
-import re
 import sys
-import numpy as np
+
 import matplotlib
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+import numpy as np
 from matplotlib.artist import Artist
 
 
@@ -123,7 +122,7 @@ class FilteredArtistList(Artist):
 # -----------------------------------------------------------------------------
 class RangeDict(dict):
     def __getitem__(self, item):
-        if type(item) != range:
+        if not item.isinstance(range):
             for key in self:
                 if item in key:
                     return self[key]
