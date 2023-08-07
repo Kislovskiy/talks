@@ -1,28 +1,75 @@
-name: "2023 PyConIT generate galery.pdf"
-run-name: "️2023 PyConIT (${{ github.sha }})"
+name: "2023 PyConIT 🇮🇹 generate galery.pdf"
+run-name: "️2023 PyConIT 🇮🇹 (${{ github.sha }})"
 on:
   pull_request:
+    branches:
+      - main
   push:
-    branches: [ main, 2023-PyConIT* ]
+    branches:
+      - main
+
+env:
+  PYTHON_VERSION: 3.11.4
+
+defaults:
+  run:
+    shell: bash -el {0}
 
 jobs:
-  generate-pdf:
+  lint:
+    name: 🚨 Lint Python code
     runs-on: ubuntu-latest
     steps:
       - name: Setup Python environment
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run:
+          pip install -r 2023_PyConIT/requirements.txt
+      - name: Run Black
+        run:
+          black 2023_PyConIT --check
+      - name: Run Flake8
+        run:
+          flake8 --config 2023_PyConIT/.flake8 2023_PyConIT
+
+  test:
+    name: 🕵 Test Python code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python environment
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
       - name: Install dependencies
         run:
           pip install -r 2023_PyConIT/requirements.txt
       - name: Run tests
-        shell: bash -el {0}
         run:
-          pytest 2023_PyData_Berlin
+          pytest 2023_PyConIT
+
+  PyConIT-Generate-pdf:
+    runs-on: ubuntu-latest
+    needs: [ lint, test ]
+    steps:
+      - name: Setup Python environment
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run:
+          pip install -r 2023_PyConIT/requirements.txt
       - name: Generate PDF
-        shell: bash -el {0}
         run:
           python 2023_PyConIT/src/assemble_plots.py
       - name: Archive PDF
