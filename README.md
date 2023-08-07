@@ -1,4 +1,9 @@
-# My Tech Talks
+# My Tech Talks 🤓
+
+Welcome!
+Here, you'll find resources for my conference talks.
+The repository contains code, slide decks, and related materials.
+Feel free to explore and get in touch!
 
 | Conference                         | Talk                                                                                                                                                                          | Slides                                                           | Video                        |
 |------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|------------------------------|

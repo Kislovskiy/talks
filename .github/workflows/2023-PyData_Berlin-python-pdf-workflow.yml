@@ -1,9 +1,20 @@
 name: "2023 PyData Berlin 🇩🇪 generate galery.pdf"
 run-name: "️2023 PyData Berlin 🇩🇪 (${{ github.sha }})"
+
 on:
   pull_request:
+    branches:
+      - main
   push:
-    branches: [ main, 2023-pycon-de*]
+    branches:
+      - main
+
+env:
+  PYTHON_VERSION: 3.11.4
+
+defaults:
+  run:
+    shell: bash -el {0}
 
 jobs:
   lint:
@@ -12,18 +23,18 @@ jobs:
     steps:
       - name: Setup Python environment
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.11.4"
+          python-version: ${{ env.PYTHON_VERSION }}
       - name: Install dependencies
         run:
           pip install -r 2023_PyData_Berlin/requirements.txt
       - name: Run Black
-        shell: bash -el {0}
         run:
           black 2023_PyData_Berlin --check
       - name: Run Flake8
-        shell: bash -el {0}
         run:
           flake8 --config 2023_PyData_Berlin/.flake8 2023_PyData_Berlin
 
@@ -33,14 +44,15 @@ jobs:
     steps:
       - name: Setup Python environment
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.11.4"
+          python-version: ${{ env.PYTHON_VERSION }}
       - name: Install dependencies
         run:
           pip install -r 2023_PyData_Berlin/requirements.txt
       - name: Run tests
-        shell: bash -el {0}
         run:
           pytest 2023_PyData_Berlin
 
@@ -50,15 +62,16 @@ jobs:
     steps:
       - name: Setup Python environment
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.11.4"
+          python-version: ${{ env.PYTHON_VERSION }}
       - name: Install dependencies
         run:
           pip install -r 2023_PyData_Berlin/requirements.txt
 
       - name: Generate PDF
-        shell: bash -el {0}
         run:
           python 2023_PyData_Berlin/src/assemble_plots.py
       - name: Archive PDF
