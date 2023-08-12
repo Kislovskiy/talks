@@ -23,6 +23,7 @@ The talk was given at [EuroSciPy 2023](https://pretalx.com/euroscipy-2023/talk/U
 ### Articles
 
 * [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html)
+* [Build Robust Continuous Integration With Docker and Friends](https://realpython.com/docker-continuous-integration/)
 * [Awesome Actions](https://github.com/sdras/awesome-actions)
 
 ### Videos
@@ -77,7 +78,7 @@ Projects: https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
 When you are done with the tutorial you'll end up with the following project structure:
 
-```shell
+```
 packaging_tutorial/
 ├── LICENSE
 ├── pyproject.toml
@@ -100,6 +101,8 @@ is a good place to start, but it may look a bit overwhelming at first, but don't
 understand that for the simple project as yours it would be enought to have the following:
 
 ```toml
+# pyproject.toml
+
 [build-system]
 requrires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
@@ -112,7 +115,7 @@ version = "0.1.0"
 After you've done this you can install your project to be available enywhere.
 
 ```shell
-python -m pip install --editable
+python -m pip install --editable .
 ```
 
 I really wish I could learn this earlier, this will save me a lot of energy and time.

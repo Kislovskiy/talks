@@ -1,4 +1,6 @@
 .vscode
 *.pyc
 /2023_PyData_Berlin/.2023_PyData_Berlin/
-/2023_EuroSciPy/.venv/
+/2023_EuroSciPy/.2023_EuroSciPy/
+*.venv/
+*.egg-info/
