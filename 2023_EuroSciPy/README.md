@@ -1,6 +1,385 @@
 # Why I Follow CI/CD Principles When Writing Code: Building Robust and Reproducible Applications
 
-## Resources:
+The talk was given at [EuroSciPy 2023](https://pretalx.com/euroscipy-2023/talk/UBT8PH/).
+
+## TL;DR
+
+* Continuous Integration has become a mainstream technique for software development, but it puts together a set of
+  well-defined principles and etiquette.
+* Threat any project as a Python package with a well-defined structure, you'll save yourself a lot of time and headache.
+* Write tests they will help you identify the right modularization of your code.
+* Learn from the best, reuse the code written by others.
+* If you are not using Continuous Integration I highly recommend you give it a try.
+
+## Further Reading:
+
+### Books
+
+* Continuous Integration
+* Robust Python
+* Full Stack Testing
+* Python Testing with pytest
+
+### Articles
+
+* [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html)
+* [Awesome Actions](https://github.com/sdras/awesome-actions)
+
+### Videos
+
+* [How GitHub Actions 10x my productivity](https://youtu.be/yfBtjLxn_6k)
+
+### Transcript
+
+Imagine a young student studying math and physics, struggling to understand why his C code is not compiling.
+He's trying to finish his assignment, but he's stuck.
+He was alone and there's no one to help him.
+Programming was always hard to me, I was never a good programmer.
+
+When I look back I can see that I've made a lot of mistakes, and I'm still making them.
+But I'm very happy that at my first software engineering job I was introduced to Continuous Integration.
+It made my life easier, and programming more fun.
+
+This talk is about Continuous Integration and Continuous Delivery, which become essential to software development.
+It removed a lot of unnecessary mental burden from me, I'm not afraid to make changes to the code, and I'm not afraid to
+break it.
+
+If you never heard about Countinuous Integration, in short this practice is about the workflow that makes everything
+easier.
+It can be easily split into seven steps.
+
+1. code locally on a feature branch
+2. open a pull request
+3. run automated tests
+4. if tests pass, manually merge
+5. once merged, run automated tests again
+6. push the conterized application to a registry
+7. distribute the code
+
+In my opinion the last point is the most important one.
+
+*Dress for the job you want, not the job you have.*
+
+Python packaging is tricky, there are many materials about it, and what was once considered good practice is now
+outdated.
+The best way to learn is to look at the code written by others, however it could be challenging for a beginner.
+As with every Python project, you should follow roughly the same steps when you start, which include making a new
+directory and then creating and activating an isolated virtual environment for your project.
+And it starts with the project structure, there are many good templates for python project, don't reinvent the wheel
+use them. e.g. https://github.com/rochacbruno/python-project-template
+From the good intentions, if you already have a project you are actively working on, review the template and refactor
+it.
+And that's where having Continuous Integration in place helps a lot and the steps of commiting a small changes to the
+project and running automated test suit become very handy.
+
+The Python official documentation has a great tutorial on Packaging Python
+Projects: https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+When you are done with the tutorial you'll end up with the following project structure:
+
+```shell
+packaging_tutorial/
+├── LICENSE
+├── pyproject.toml
+├── README.md
+├── src/
+│   └── example_package_YOUR_USERNAME_HERE/
+│       ├── __init__.py
+│       └── example.py
+└── tests/
+    └── test_example.py
+``` 
+
+And there are a lot to talk about here.
+First is a `pyproject.toml`. TOML is a configuration file format that has gained popularity lately.
+Starting with PEP 621 (https://peps.python.org/pep-0621/), the Python community selected pyproject.toml as a standard
+way of specifying project metadata.
+In general, TOML files contain key-value pairs separated into sections, or tables.
+[Configuring setuptools using pyproject.toml files](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html)
+is a good place to start, but it may look a bit overwhelming at first, but don't panic and read it carefully, you'll
+understand that for the simple project as yours it would be enought to have the following:
+
+```toml
+[build-system]
+requrires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "packaging_tutorial"
+version = "0.1.0"
+```
+
+After you've done this you can install your project to be available enywhere.
+
+```shell
+python -m pip install --editable
+```
+
+I really wish I could learn this earlier, this will save me a lot of energy and time.
+
+Second thing that people usually not focus on is the right pick of licence.
+It's importand because it defines how others can use your code.
+
+Here is some examples from popular Python projects:
+
+* First off, SymPy is completely free. It is open source, and licensed under the liberal BSD license, so you can modify
+  the source code and even sell it if you want to (https://docs.sympy.org/latest/tutorials/intro-tutorial/intro.html)
+* Distributed under a liberal BSD license, NumPy is developed and maintained publicly on GitHub by a vibrant,
+  responsive, and diverse community. (https://numpy.org/)
+
+You can refer to: https://choosealicense.com/
+Or follow Anwesha Das, who does a great job educating community about right pick of licence for your projects
+e.g. https://anweshadas.in/my-talk-about-software-licenses-in-pycon-india/
+
+It might look as a lot of information and it is.
+If your existing codebase doesn't allow you to experiment with this quickly, maybe it would be a good idea to set up a
+small toy project and play with it.
+It's a great way to learn and it's fun.
+
+> Maybe it would be a good idea to continue setting up the Continuous Integration on this small project.
+
+Finally, we are ready to talk about Continuous Integration.
+There is another rabbit hole for the beginners on this way is a knowledge of Git and GitHub, I'll skip this step for now
+and will refer to the amazing resources that you can find following this link.
+
+Let's revert back to what we've started with.
+
+1. code locally on a feature branch
+2. open a pull request
+3. run automated tests
+4. if tests pass, manually merge
+5. once merged, run automated tests again
+6. push the conterized application to a registry
+7. distribute the code
+
+And introduce GitHub Actions.
+As a disclaimer, there are other great products that have the same functionality, I picked GitHub Actions because it's
+well integrated with your GitHub repository and allow to do a great things.
+
+But first what is GitHub Actions?
+When you host your code in a repository on GitHub there is a ton of different events that could happen.
+For example, someone can push some new code to the main branch, or another person can open a pull request, or maybe
+someone opens an issue because your code is not working as expected.
+There is a big list of events that can happen to a repository, and Action listens to these events and can trigger some
+code to run automatically when they happen.
+In the background GitHub spins up a magical cloud virtual environment build according the specifications and runs the
+code you've defined.
+It's a great way to automate routine tasks.
+Of course running things in a Cloud costs money, but GitHub Actions has a amazing free tier that most projects won't
+probably exceed.
+
+Why do we need Continuous Integration?
+One of the common tenets of the DevOps mindset is to “shift your errors left.”
+The idea is to think of your errors in terms of their cost. How expensive is it to fix an error?
+The earlier in the development cycle you are, the less expensive it is to address errors.
+
+To get started we need to create a `.github` directory in the root of our project, followed by a `workflows` directory.
+As with many tools related to DevOps these days, GitHub uses the YAML format for configuring workflows.
+Then inside we create a yaml file that can be named whatever you want.
+
+You can logically split every workflow file into three sections:
+
+* name of the workflow
+* when to trigger the workflow
+* what to do when the workflow is triggered
+
+Most of the time your file will look something like this:
+
+```yaml
+# .github/workflows/ci.yml
+
+name: "Continuous Integration"
+run-name: "️CI for (${{ github.sha }})"
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash -e {0}
+
+jobs:
+  build:
+    name: Build with Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        python-version: [ "3.9", "3.10", "3.11" ]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+```
+
+Without even diving deep you could imitatively notice some of awesome things that could help you to increase
+maintainability of your codebase.
+
+Back in a day when I was a student it was so painful to collaborate with my peers because usually any software that I or
+they wrote were coupled with their local environment and OS.
+
+The problem with this approach is that everyone on the team works on their own copy of the project.
+The longer the integration phase is delayed, the more likely it is that the different versions of the project will
+diverge, making it difficult to combine them.
+In some cases, integration could take more time than the actual development of the project!
+
+With GitHub Actions you can easily set up a matrix of different OS and Python versions to run your code on.
+Alternatively you can learn how to develop and package your code in a container and run it in a containerized
+environment, but this is a topic for another day.
+
+With the current setup we prepared the environment we need to decide what to do next.
+First of all, we should clean up your code by formatting it consistently, sorting the import statements, and checking
+for PEP 8 compliance.
+We can achieve this by using a class of static analysis tools called linters.
+Linters search for common programming mistakes and style violations within your codebase.
+They get their name from the original linter: a program named lint that used to check C programs for common errors.
+
+As author of "Robust Python" book writes in the charapter about Static analysers.
+There are many static analysis tools available for Python.
+Often each tool you use builds a safety net for a different class of errors.
+For example, typecheckers won't catch common programming mistakes, linters won't check security violations, security
+checkers won't catch complex code, and so on.
+But when these tools are stacked together, it's much less likely for a legitimate error to get through.
+
+As a minimum you'll use black to flag any formatting inconsistencies in your code, isort to ensure that your import
+statements stay organized according to the official recommendation, and flake8 to check for any other PEP 8 style
+violations.
+
+Finally, it’s too common to inadvertently leak sensitive data through your source code or expose other security
+vulnerabilities.
+It happens even to the best software engineers.
+Recently, GitHub exposed its private key in a public repository, which could’ve allowed attackers to impersonate the
+giant. (https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/#what-happened-and-what-actions-have-we-taken)
+To reduce the risk of such incidents, you should perform security or vulnerability scanning of your source code before
+deploying it anywhere.
+
+```yaml
+jobs:
+  lint:
+    name: 🚨 Lint Python code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python environment
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run:
+          pip install -r 2023_PyData_Berlin/requirements.txt
+      - name: Run Black
+        run:
+          black 2023_PyData_Berlin --check
+      - name: Run Flake8
+        run:
+          flake8 --config 2023_PyData_Berlin/.flake8 2023_PyData_Berlin
+```
+
+Testing
+
+When it comes to writing unit tests, it’s quite common for those in the Python community to choose pytest over the
+standard library’s unittest module.
+Thanks to the relative simplicity of pytest, this testing framework is quick to start with.
+
+When we've done with setting up our Continuous Integration pipeline we have some confidence that our robots will do the
+routine work of checking the code style and running tests for us.
+There is another bit that we could ask robots to do for us, is to automatically check the versions of our dependencies
+and update our codebase when they are available.
+
+There are two common applications that could be used for this: Renovate and Dependabot.
+And as almost everything in a DevOps world is configured in yaml's these tools are not an exception, but they can
+improve your code without you doing anything.
+Usually newer versions of libraries contain some fixes or performance optimisations that could make your code better.
+
+I use Renovate, because it's highly customizable (https://github.com/renovatebot/renovate). After you've installed this
+GitHub App it will open a first PR with a configuration file that you can tweak to your needs.
+Now your dependencies will be updated automatically, and you'll be notified about it in a PR.
+
+Now it's time to wrap up and remind you about the main points of this talk.
+
+We've talked about Continuous Integration, and we saw that there are many things that make your project easier to
+maintain and collaborate on.
+I had time to touch only a part of fascinating world of software development, but I encourage you to explore it further,
+play with it, and make fun of it.
+In the end even a small step in the right direction is better than nothing.
+Not always we have a privilege of having someone who can review our code and catch errors, but as I showed in the
+example of GitHub Actions we can make robots do some of the routine work for us, and ensure that on every commit our
+code is tested and checked.
+
+I wrote an extensive resource list for this talk that you can find here, and if you feel inspired but overwhelmed and
+struggle to identify the first step that you could take for your project, I am always more than happy to help you with
+that.
+
+There are many good books and articles about it, you can find them in the resource section of this talk.
+It looks simple, but as I said, programming was always hard to me.
+And I believe it is for many of us here.
+
+My goal today to share not the best practices, but share better practices.
+And the first thing that comes to mind is automation.
+Seek for opportunities to automate your routine tasks.
+Let's start with your code repository and the project structure.
+
+Every Python project
+
+*Dress for the job you want, not the job you have.*
+As with every Python project, you should follow roughly the same steps when you start, which include making a new
+directory and then creating and activating an isolated virtual environment for your project.
+And it starts with the project structure, there are many good templates for python project, don't reinvent the wheel
+use them. e.g. https://github.com/rochacbruno/python-project-template
+If you already have a project you are actively working on, review the template and refactor it.
+
+Using a pyproject.toml file and creating an editable install may sound like something you might only need when
+distributing you package.
+However it's something that will make developing anything larger than a single file script much easier and less
+headache-prone.
+
+The next usually ignored aspect is a licence for your code.
+It's importand because it defines how others can use your code.
+You can reffer to: https://choosealicense.com/
+Or follow Anwesha Das, who does a great job educating community about this
+e.g. https://anweshadas.in/my-talk-about-software-licenses-in-pycon-india/
+
+The most important documents that define how Python packaging works are the following PEPs:
+
+    PEP 427 describes how wheels should be packaged.
+    PEP 440 describes how version numbers should be parsed.
+    PEP 508 describes how dependencies should be specified.
+    PEP 517 describes how a build backend should work.
+    PEP 518 describes how a build system should be specified.
+    PEP 621 describes how project metadata should be written.
+    PEP 660 describes how editable installs should be performed.
+
+https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+Arguments for licence:
+
+* First off, SymPy is completely free. It is open source, and licensed under the liberal BSD license, so you can modify
+  the source code and even sell it if you want to (https://docs.sympy.org/latest/tutorials/intro-tutorial/intro.html)
+* Distributed under a liberal BSD license, NumPy is developed and maintained publicly on GitHub by a vibrant,
+  responsive, and diverse community. (https://numpy.org/)
+
+For Testing:
+
+* https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+For publishing:
+
+* https://olgarithms.github.io/sphinx-tutorial/docs/8-automating-documentation-updates.html
 
 ### Robust Python
 
