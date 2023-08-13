@@ -114,9 +114,13 @@ version = "0.1.0"
 
 After you've done this you can install your project to be available enywhere.
 
+TODO: don't forget to create a virutal environment.
+
 ```shell
 python -m pip install --editable .
 ```
+
+TODO: show how to use dive
 
 I really wish I could learn this earlier, this will save me a lot of energy and time.
 
@@ -227,6 +231,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 ```
+
+TODO: show how to use ACT for GitHub Actions.
 
 Without even diving deep you could imitatively notice some of awesome things that could help you to increase
 maintainability of your codebase.

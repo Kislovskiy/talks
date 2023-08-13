@@ -6,5 +6,11 @@ build-backend = "setuptools.build_meta"
 name = "greeter_project"
 version = "1.0.0"
 dependencies = [
-    "art==6.0"
+    "art==6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.0",
+    "hypothesis==6.82.3",
 ]

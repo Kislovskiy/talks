@@ -1,3 +1,4 @@
+# __main__.py
 import sys
 
 from greeter_project import greeter
