@@ -2,6 +2,10 @@ name: "2023 PyData Berlin 🇩🇪 generate galery.pdf"
 run-name: "️2023 PyData Berlin 🇩🇪 (${{ github.sha }})"
 
 on:
+  #  Workflow can still be triggered manually
+  #  pull_request:
+  #    branches:
+  #      - main
   push:
     branches:
       - main
