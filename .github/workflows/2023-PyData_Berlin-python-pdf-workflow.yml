@@ -2,7 +2,7 @@ name: "2023 PyData Berlin 🇩🇪 generate galery.pdf"
 run-name: "️2023 PyData Berlin 🇩🇪 (${{ github.sha }})"
 
 on:
-  #  Workflow can still be triggered manually
+  #  The "pull_request" section is currently commented out because the workflow can still be manually triggered
   #  pull_request:
   #    branches:
   #      - main
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Python environment
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 1
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
