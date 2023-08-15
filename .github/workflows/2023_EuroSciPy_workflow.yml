@@ -1,0 +1,44 @@
+name: "2023 EuroSciPy 🇨🇭Continuous Integration Demo"
+run-name: "️2023 EuroSciPy CI (${{ github.sha }})"
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash -e {0}
+
+jobs:
+  build:
+    name: 🏗️Build with Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        python-version: [ "3.11" ]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          sparse-checkout: 2023_EuroSciPy
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install 2023_EuroSciPy
+        run: |
+          cd 2023_EuroSciPy
+          python -m pip install --upgrade pip
+          python -m pip install  ".[dev]"
+      - name: Run tests
+        run:
+          pytest 2023_EuroSciPy
