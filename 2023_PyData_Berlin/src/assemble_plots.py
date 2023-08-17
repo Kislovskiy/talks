@@ -10,7 +10,7 @@ def main():
     # Create a PDF file to store all the plots
     results_directory = Path(__file__).parent.parent.joinpath("results")
     results_directory.mkdir(parents=True, exist_ok=True)
-    path_to_assembled_pdf = results_directory.joinpath("galery.pdf")
+    path_to_assembled_pdf = results_directory.joinpath("gallery.pdf")
     with PdfPages(path_to_assembled_pdf) as pdf:
         for file in Path(__file__).parent.glob("plot_*.py"):
             spec = spec_from_file_location("src", file)

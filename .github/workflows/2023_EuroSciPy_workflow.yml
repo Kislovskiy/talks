@@ -2,9 +2,10 @@ name: "2023 EuroSciPy 🇨🇭Continuous Integration Demo"
 run-name: "️2023 EuroSciPy CI (${{ github.sha }})"
 
 on:
-  pull_request:
-    branches:
-      - main
+  #  The "pull_request" section is currently commented out because the workflow can still be manually triggered
+  #  pull_request:
+  #    branches:
+  #      - main
   push:
     branches:
       - main
