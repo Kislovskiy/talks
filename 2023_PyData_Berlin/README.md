@@ -1,4 +1,4 @@
-[![2023 PyData Berlin 🇩🇪 generate galery.pdf](https://github.com/Kislovskiy/talks/actions/workflows/2023-PyData_Berlin-python-pdf-workflow.yml/badge.svg)](https://github.com/Kislovskiy/talks/actions/workflows/2023-PyData_Berlin-python-pdf-workflow.yml)
+[![2023 PyData Berlin 🇩🇪 generate gallery.pdf](https://github.com/Kislovskiy/talks/actions/workflows/2023-PyData_Berlin-python-pdf-workflow.yml/badge.svg)](https://github.com/Kislovskiy/talks/actions/workflows/2023-PyData_Berlin-python-pdf-workflow.yml)
 # The bumps in the road: A retrospective on my data visualisation mistakes
 
 ## TL;DR
@@ -53,7 +53,7 @@ source .venv/bin/activate
 └── LICENSE
 ```
 
-# Galery of plots
+# gallery of plots
 
 ### Plot text
 
@@ -150,12 +150,12 @@ easier.
 
 For data visualisation projects I start simple, but you could notice a few things.
 First is a directory with all the code for the project.
-Second is a `.github` folder, that contains a file with a workflow for generating a `galery.pdf` file.
+Second is a `.github` folder, that contains a file with a workflow for generating a `gallery.pdf` file.
 The workflow is triggered when I push a commit.
 
 ## Slide 6
 
-Continuous integration pipeline generates a galery.pdf file with all the plots from the repository.
+Continuous integration pipeline generates a gallery.pdf file with all the plots from the repository.
 It's very handy to have a gallery.pdf as a reference of plots you have, but you can also see how the plots change over
 time, and easily revert some of them to previous versions if necessary.
 For the same reason I like to include .svg files in the README.md file, however the README could become bulky if you

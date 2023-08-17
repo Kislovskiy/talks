@@ -1,4 +1,4 @@
-name: "2023 PyData Berlin 🇩🇪 generate galery.pdf"
+name: "2023 PyData Berlin 🇩🇪 generate gallery.pdf"
 run-name: "️2023 PyData Berlin 🇩🇪 (${{ github.sha }})"
 
 on:
@@ -79,5 +79,5 @@ jobs:
       - name: Archive PDF
         uses: actions/upload-artifact@v3
         with:
-          name: galery.pdf
-          path: 2023_PyData_Berlin/results/galery.pdf
+          name: gallery.pdf
+          path: 2023_PyData_Berlin/results/gallery.pdf
