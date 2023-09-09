@@ -3,4 +3,4 @@ pandas==2.1.0
 matplotlib==3.7.2
 pytest==7.4.0
 flake8==6.1.0
-black==23.7.0
+black==23.9.0
