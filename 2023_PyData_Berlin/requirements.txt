@@ -1,5 +1,5 @@
 numpy==1.26.0
-pandas==2.1.2
+pandas==2.1.4
 matplotlib==3.8.2
 pytest==7.4.3
 flake8==6.1.0
