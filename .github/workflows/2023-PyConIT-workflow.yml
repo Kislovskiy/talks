@@ -1,11 +1,17 @@
 name: "2023 PyConIT 🇮🇹 generate gallery.pdf"
 run-name: "️2023 PyConIT 🇮🇹 (${{ github.sha }})"
+
 on:
-  #  The "pull_request" section is currently commented out because the workflow can still be manually triggered
-  #  pull_request:
-  #    branches:
-  #      - main
+  pull_request:
+    paths:
+      - "2023_PyConIT/**/*.py"
+      - "2023_PyConIT/**/*.ipynb"
+    branches:
+      - main
   push:
+    paths:
+      - "2023_PyConIT/**/*.py"
+      - "2023_PyConIT/**/*.ipynb"
     branches:
       - main
   workflow_dispatch:
