@@ -6,12 +6,14 @@ on:
     paths:
       - "2023_PyData_Berlin/**/*.py"
       - "2023_PyData_Berlin/**/*.ipynb"
+      - "2023_PyData_berlin/requirements.txt"
     branches:
       - main
   push:
     paths:
       - "2023_PyData_Berlin/**/*.py"
       - "2023_PyData_Berlin/**/*.ipynb"
+      - "2023_PyData_berlin/requirements.txt"
     branches:
       - main
   workflow_dispatch:
