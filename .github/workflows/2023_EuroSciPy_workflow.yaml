@@ -7,6 +7,10 @@ on:
     branches:
       - main
 
+concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
 defaults:
   run:
     # Use Bash shell with 'errexit' option to exit immediately if any command fails.
