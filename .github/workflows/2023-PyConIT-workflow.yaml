@@ -35,7 +35,7 @@ jobs:
           - "2023_PyConIT/**/*.py"
           - "2023_PyConIT/**/*.ipynb"
           - "2023_PyConIT/requirements.txt"
-  
+
   lint:
     name: 🚨 Lint Python code
     if: needs.changes.outputs.changes == 'true'

@@ -63,7 +63,7 @@ packaging_tutorial/
 │       └── example.py
 └── tests/
     └── test_example.py
-``` 
+```
 
 And there are a lot to talk about here.
 First is a `pyproject.toml`. TOML is a configuration file format that has gained popularity lately.

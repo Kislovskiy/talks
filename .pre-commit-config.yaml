@@ -6,3 +6,5 @@ repos:
     - id: check-yaml
       args: ['--unsafe']
     - id: check-toml
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
