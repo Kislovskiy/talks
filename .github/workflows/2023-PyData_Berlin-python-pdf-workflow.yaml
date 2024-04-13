@@ -2,18 +2,11 @@ name: "2023 PyData Berlin 🇩🇪 generate gallery.pdf"
 run-name: "️2023 PyData Berlin 🇩🇪 (${{ github.sha }})"
 
 on:
-  pull_request:
-    paths:
-      - "2023_PyData_Berlin/**/*.py"
-      - "2023_PyData_Berlin/**/*.ipynb"
-      - "2023_PyData_berlin/requirements.txt"
   push:
     paths:
       - "2023_PyData_Berlin/**/*.py"
       - "2023_PyData_Berlin/**/*.ipynb"
       - "2023_PyData_berlin/requirements.txt"
-    branches:
-      - main
   workflow_dispatch:
 
 env:
