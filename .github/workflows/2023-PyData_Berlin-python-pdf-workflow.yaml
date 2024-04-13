@@ -1,13 +1,11 @@
 name: "2023 PyData Berlin 🇩🇪 generate gallery.pdf"
-run-name: "️2023 PyData Berlin 🇩🇪 (${{ github.sha }})"
+run-name: "BUILD - 2023 PyData Berlin (${{ github.event_name }})"
 
 on:
+  pull_request:
   push:
-    paths:
-      - "2023_PyData_Berlin/**/*.py"
-      - "2023_PyData_Berlin/**/*.ipynb"
-      - "2023_PyData_berlin/requirements.txt"
-  workflow_dispatch:
+    branches:
+      - main
 
 env:
   PYTHON_VERSION: 3.11
@@ -18,14 +16,34 @@ defaults:
     shell: bash -el {0}
 
 jobs:
+  changes:
+    name: 🔄 Check out changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+    - name: Check for backend file changes
+      uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 #v3.0.2
+      id: changes
+      with:
+        filters: |
+          changes:
+          - "2023_PyData_Berlin/**/*.py"
+          - "2023_PyData_Berlin/**/*.ipynb"
+          - "2023_PyData_berlin/requirements.txt"
+          
   lint:
     name: 🚨 Lint Python code
+    if: needs.changes.outputs.changes == 'true'
+    needs: changes
     runs-on: ubuntu-latest
     steps:
       - name: Setup Python environment
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-        with:
-          fetch-depth: 1
       - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -41,12 +59,12 @@ jobs:
 
   test:
     name: 🕵 Test Python code
+    if: needs.changes.outputs.changes == 'true'
+    needs: changes
     runs-on: ubuntu-latest
     steps:
       - name: Setup Python environment
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-        with:
-          fetch-depth: 0
       - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -63,8 +81,6 @@ jobs:
     steps:
       - name: Setup Python environment
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-        with:
-          fetch-depth: 0
       - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}

@@ -1,20 +1,11 @@
-name: "2023 EuroSciPy 🇨🇭Continuous Integration Demo"
-run-name: "️2023 EuroSciPy CI (${{ github.sha }})"
+name: "2023 EuroSciPy 🇨🇭 Continuous Integration Demo"
+run-name: "️BUILD - 2023 EuroSciPy (${{ github.event_name }})"
 
 on:
   pull_request:
-    paths:
-      - "2023_EuroSciPy/**/*.py"
-      - "2023_EuroSciPy/**/*.ipynb"
-      - "2023_EuroSciPy/pyproject.toml"
   push:
-    paths:
-      - "2023_EuroSciPy/**/*.py"
-      - "2023_EuroSciPy/**/*.ipynb"
-      - "2023_EuroSciPy/pyproject.toml"
     branches:
       - main
-  workflow_dispatch:
 
 defaults:
   run:
@@ -22,6 +13,25 @@ defaults:
     shell: bash -e {0}
 
 jobs:
+  changes:
+    name: 🔄 Check out changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+    - name: Check for backend file changes
+      uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 #v3.0.2
+      id: changes
+      with:
+        filters: |
+          changes:
+          - "2023_EuroSciPy/**/*.py"
+          - "2023_EuroSciPy/**/*.ipynb"
+          - "2023_EuroSciPy/requirements.txt"
   build:
     name: 🏗️ Build with Python ${{ matrix.python-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -35,7 +45,6 @@ jobs:
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
-          fetch-depth: 1
           sparse-checkout: 2023_EuroSciPy
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
