@@ -361,5 +361,3 @@ collection, data processing, and availability of datasets, I know that everythin
 read, I quickly go and see what's wrong.
 And we looked at the example of continuous delivery pipeline, where we could use GitHub actions to verify the data
 visualisation code.
-
-

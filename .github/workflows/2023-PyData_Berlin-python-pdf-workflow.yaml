@@ -35,7 +35,7 @@ jobs:
           - "2023_PyData_Berlin/**/*.py"
           - "2023_PyData_Berlin/**/*.ipynb"
           - "2023_PyData_berlin/requirements.txt"
-          
+
   lint:
     name: 🚨 Lint Python code
     if: needs.changes.outputs.changes == 'true'
