@@ -3,12 +3,15 @@ run-name: "️2023 EuroSciPy CI (${{ github.sha }})"
 
 on:
   pull_request:
-    paths: &project_paths
+    paths:
       - "2023_EuroSciPy/**/*.py"
       - "2023_EuroSciPy/**/*.ipynb"
       - "2023_EuroSciPy/pyproject.toml"
   push:
-    paths: *project_paths
+    paths:
+      - "2023_EuroSciPy/**/*.py"
+      - "2023_EuroSciPy/**/*.ipynb"
+      - "2023_EuroSciPy/pyproject.toml"
     branches:
       - main
   workflow_dispatch:

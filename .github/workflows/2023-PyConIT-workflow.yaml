@@ -3,12 +3,15 @@ run-name: "️2023 PyConIT 🇮🇹 (${{ github.sha }})"
 
 on:
   pull_request:
-    paths: &project_paths
+    paths:
       - "2023_PyConIT/**/*.py"
       - "2023_PyConIT/**/*.ipynb"
       - "2023_PyData_berlin/requirements.txt"
   push:
-    paths: *project_paths
+    paths:
+      - "2023_PyConIT/**/*.py"
+      - "2023_PyConIT/**/*.ipynb"
+      - "2023_PyData_berlin/requirements.txt"
     branches:
       - main
   workflow_dispatch:
