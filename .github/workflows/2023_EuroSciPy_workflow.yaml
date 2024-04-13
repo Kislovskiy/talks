@@ -3,23 +3,19 @@ run-name: "️2023 EuroSciPy CI (${{ github.sha }})"
 
 on:
   pull_request:
-    paths:
+    paths: &project_paths
       - "2023_EuroSciPy/**/*.py"
       - "2023_EuroSciPy/**/*.ipynb"
       - "2023_EuroSciPy/pyproject.toml"
-    branches:
-      - main
   push:
-    paths:
-      - "2023_EuroSciPy/**/*.py"
-      - "2023_EuroSciPy/**/*.ipynb"
-      - "2023_EuroSciPy/pyproject.toml"
+    paths: *project_paths
     branches:
       - main
   workflow_dispatch:
 
 defaults:
   run:
+    # Use Bash shell with 'errexit' option to exit immediately if any command fails.
     shell: bash -e {0}
 
 jobs:
