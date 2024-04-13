@@ -3,17 +3,12 @@ run-name: "️2023 PyConIT 🇮🇹 (${{ github.sha }})"
 
 on:
   pull_request:
-    paths:
+    paths: &project_paths
       - "2023_PyConIT/**/*.py"
       - "2023_PyConIT/**/*.ipynb"
       - "2023_PyData_berlin/requirements.txt"
-    branches:
-      - main
   push:
-    paths:
-      - "2023_PyConIT/**/*.py"
-      - "2023_PyConIT/**/*.ipynb"
-      - "2023_PyData_berlin/requirements.txt"
+    paths: *project_paths
     branches:
       - main
   workflow_dispatch:
@@ -23,6 +18,7 @@ env:
 
 defaults:
   run:
+    # Use Bash shell with 'errexit' option to exit immediately if any command fails.
     shell: bash -el {0}
 
 jobs:
