@@ -22,10 +22,9 @@ jobs:
     timeout-minutes: 1
     permissions:
       pull-requests: read
-    outputs:
-      changes: ${{ steps.filter.outputs.changes }}
     steps:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      if: github.ref == 'refs/heads/main'  # Only checkout when the branch is 'main'
     - name: Check for backend file changes
       uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 #v3.0.2
       id: changes
