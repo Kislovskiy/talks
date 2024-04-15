@@ -6,6 +6,6 @@ on:
 
 jobs:
   trigger_workflow:
-    uses: Kislovskiy/talks/.github/workflows/2024_PyConDE_reusable_workflow.yaml@github-acitons-playground
+    uses: Kislovskiy/talks/.github/workflows/2024_PyConDE_reusable_workflow.yaml@main
     with:
       example_param: 'Hello, World! 😀'
