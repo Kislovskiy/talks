@@ -2,10 +2,7 @@ name: "2024 PyCON DE ♻️ Trigger Reusable Workflow"
 run-name: "MANUAL - ♻️ Trigger Reusable Workflow (run by - ${{ github.triggering_actor }})"
 
 on:
-  pull_request:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   trigger_workflow:
