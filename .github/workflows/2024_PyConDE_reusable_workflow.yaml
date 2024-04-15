@@ -1,0 +1,19 @@
+name: "2024 PyCON DE ♻️ My Reusable Workflow"
+run-name: "MANUAL - ♻️ My Reusable Workflow (run by - ${{ github.triggering_actor }})"
+
+on:
+  pull_request:
+  workflow_call:
+    inputs:
+      example_param:
+        description: 'An example input parameter'
+        required: true
+        default: 'Hello, World! (default) 😞'
+        type: string
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Input Parameter
+        run: echo "The input parameter value is ${{ inputs.example_param }}"

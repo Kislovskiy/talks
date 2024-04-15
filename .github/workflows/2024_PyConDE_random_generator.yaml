@@ -1,0 +1,34 @@
+name: "2024 PyCON DE 🎲 Random Number Workflow"
+run-name: "MANUAL - 🔬 Show Default Env (run by - ${{ github.triggering_actor }})"
+
+on:
+    workflow_dispatch:
+    pull_request:
+
+jobs:
+  random-number-generator:
+    runs-on: ubuntu-latest
+    outputs:
+      number: ${{ steps.generate-number.outputs.number }}
+      is-even: ${{ steps.generate-number.outputs.is-even }}
+    steps:
+    - id: generate-number
+      run: echo "number=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"
+    - id: is-even
+      run: |
+        echo "is-even=$(( ${{steps.generate-number.outputs.number}} % 2 == 0 ))" >> "$GITHUB_OUTPUT"
+        echo "The number is ${{steps.generate-number.outputs.number}}" >> $GITHUB_STEP_SUMMARY
+
+  consumer-of-generator-odd:
+    needs: random-number-generator
+    runs-on: ubuntu-latest
+    if: ${{ needs.random-number-generator.outputs.is-even == 0 }}
+    steps:
+    - run: echo "The number is ${{ needs.random-number-generator.outputs.number }} is odd"
+
+  consumer-of-generator-even:
+      needs: random-number-generator
+      runs-on: ubuntu-latest
+      if: ${{ needs.random-number-generator.outputs.is-even == 1 }}
+      steps:
+      - run: echo "The number is ${{ needs.random-number-generator.outputs.number }} is even"

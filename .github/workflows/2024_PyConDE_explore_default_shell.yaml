@@ -1,0 +1,14 @@
+name: "2024 PyCON DE 🔬 Show Default Shell"
+run-name: "MANUAL - 🔬 Show Default Shell (run by - ${{ github.triggering_actor }})"
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  show_default_shell:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Display Default Shell
+      run: echo "Default Shell $SHELL"

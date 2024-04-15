@@ -1,0 +1,14 @@
+name: "2024 PyCON DE ♻️ Trigger Reusable Workflow"
+run-name: "MANUAL - ♻️ Trigger Reusable Workflow (run by - ${{ github.triggering_actor }})"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger_workflow:
+    uses: Kislovskiy/talks/.github/workflows/2024_PyConDE_reusable_workflow.yaml@github-acitons-playground
+    with:
+      example_param: 'Hello, World! 😀'

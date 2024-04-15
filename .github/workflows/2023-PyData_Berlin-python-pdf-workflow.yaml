@@ -23,18 +23,19 @@ jobs:
     permissions:
       pull-requests: read
     outputs:
-      changes: ${{ steps.filter.outputs.changes }}
+      PyDataBerlinChanges: ${{ steps.filter.outputs.PyDataBerlinChanges }}
     steps:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-    - name: Check for backend file changes
+      if: github.ref == 'refs/heads/main'  # Only checkout when the branch is 'main'
+    - name: Check for 2023_PyData_Berlin file changes
       uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 #v3.0.2
-      id: changes
+      id: filter
       with:
         filters: |
-          changes:
+          PyDataBerlinChanges:
           - "2023_PyData_Berlin/**/*.py"
           - "2023_PyData_Berlin/**/*.ipynb"
-          - "2023_PyData_berlin/requirements.txt"
+          - "2023_PyData_Berlin/requirements.txt"
 
   lint:
     name: 🚨 Lint Python code
@@ -59,7 +60,7 @@ jobs:
 
   test:
     name: 🕵 Test Python code
-    if: needs.changes.outputs.changes == 'true'
+    if: ${{ needs.changes.outputs.PyDataBerlinChanges == 'true' }}
     needs: changes
     runs-on: ubuntu-latest
     steps:
