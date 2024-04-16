@@ -12,4 +12,12 @@ jobs:
 
     steps:
     - name: Display Environment
-      run: printenv >> $GITHUB_STEP_SUMMARY
+      run: |
+        for var in $(printenv); do
+          # Check if the variable contains a secret pattern
+          if [[ $var != *"SECRET"* && $var != *"TOKEN"* ]]; then
+            echo "$var"
+          else
+            echo "[Filtered] $var"
+          fi
+        done >> $GITHUB_STEP_SUMMARY
