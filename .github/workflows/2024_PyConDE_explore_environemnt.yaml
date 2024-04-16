@@ -2,12 +2,14 @@ name: "2024 PyCON DE 🔬 Show Default Env"
 run-name: "MANUAL - 🔬 Show Default Env (run by - ${{ github.triggering_actor }})"
 
 on:
+  pull_request:
   workflow_dispatch:
 
 jobs:
   show_default_shell:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
 
     steps:
     - name: Display Environment
-      run: printenv
+      run: printenv >> $GITHUB_STEP_SUMMARY
