@@ -1,13 +1,18 @@
-name: "2024 PyCON DE 🔬 Show Default Env"
-run-name: "MANUAL - 🔬 Show Default Env (run by - ${{ github.triggering_actor }})"
+name: "2024 PyCON DE ☠️ Show Environment"
+run-name: "MANUAL - ☠️ Show Environment (run by - ${{ github.triggering_actor }})"
 
 on:
+  pull_request:
   workflow_dispatch:
 
 jobs:
   show_default_shell:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
 
     steps:
-    - name: Display Environment
-      run: printenv
+    - name: ☠️ Display Environment Variables Names
+      run: |
+        for var in $(printenv | cut -d "=" -f 1); do
+          echo "$var"
+        done >> $GITHUB_STEP_SUMMARY
