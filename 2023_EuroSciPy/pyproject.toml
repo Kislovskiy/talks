@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "greeter_project"
 version = "1.0.0"
 dependencies = [
-    "art==6.1",
+    "art==6.2",
 ]
 
 [project.optional-dependencies]
