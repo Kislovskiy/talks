@@ -4,3 +4,5 @@
 /2023_EuroSciPy/.2023_EuroSciPy/
 *.venv/
 *.egg-info/
+.idea
+.DS_Store
