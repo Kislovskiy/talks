@@ -1,0 +1,27 @@
+[project]
+name = "2024_PyConIT"
+version = "0.1.0"
+description = "Material for my PyConIT talk"
+authors = ["Artem Kislovskiy <kislovskiy@protonmail.com>"]
+channels = ["conda-forge"]
+platforms = ["osx-arm64"]
+
+[tasks]
+
+[dependencies]
+python = ">=3.12.3,<3.13"
+pytest = ">=8.2.0,<8.3"
+hypothesis = ">=6.100.5,<6.101"
+ruff = ">=0.4.4,<0.5"
+requests = ">=2.31.0,<2.32"
+rich = ">=13.7.1,<13.8"
+toolz = ">=0.12.1,<0.13"
+
+[tool.pixi.feature.test.tasks]
+test = "pytest"
+
+[tool.pixi.environments]
+test = ["test"]
+
+[pypi-dependencies]
+pymonad = "*"
