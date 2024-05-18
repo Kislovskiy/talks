@@ -16,6 +16,8 @@ ruff = ">=0.4.4,<0.5"
 requests = ">=2.31.0,<2.32"
 rich = ">=13.7.1,<13.8"
 toolz = ">=0.12.1,<0.13"
+pixi-pycharm = ">=0.0.5,<0.1"
+mypy = ">=1.10.0,<1.11"
 
 [tool.pixi.feature.test.tasks]
 test = "pytest"
@@ -25,3 +27,6 @@ test = ["test"]
 
 [pypi-dependencies]
 pymonad = "*"
+expression = "*"
+oslash = "*"
+polars = "*"

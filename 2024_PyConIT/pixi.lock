@@ -27,10 +27,14 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.2.13-h53f4e23_5.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/markdown-it-py-3.0.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mdurl-0.1.2-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/mypy-1.10.0-py312h4a164c9_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/mypy_extensions-1.0.0-pyha770c72_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-hb89a1cb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.3.0-h0d3ecfb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/packaging-24.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pixi-pycharm-0.0.5-unix_1234567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pluggy-1.5.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/psutil-5.9.8-py312he37b823_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pygments-2.18.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pysocks-1.7.1-pyha2e5f31_6.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/pytest-8.2.0-pyhd8ed1ab_0.conda
@@ -49,6 +53,9 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2024a-h0c530f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/urllib3-2.2.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/xz-5.2.6-h57fd34a_0.tar.bz2
+      - pypi: https://files.pythonhosted.org/packages/51/50/6e79cdeb145598c1de3951f0f075b1789658dec151a94a3ea955566bcaba/expression-5.0.2-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/2d/c3/77d40a6e20fdfbf92b086d2c47e3cc82731e179e3f44bdc8e60b7306bcc3/OSlash-0.6.3-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/90/9e/b17797f3c6f3db525dde26a3f0d45a90c7de0df3476a430411160332d6e7/polars-0.20.25-cp38-abi3-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/8d/42/461af4ed7ea252b46c53b59f965d5f1eda971eef4d0c12f8320286578bf3/PyMonad-2.4.0-py3-none-any.whl
 packages:
 - kind: conda
@@ -215,6 +222,15 @@ packages:
   - pkg:pypi/exceptiongroup
   size: 20551
   timestamp: 1704921321122
+- kind: pypi
+  name: expression
+  version: 5.0.2
+  url: https://files.pythonhosted.org/packages/51/50/6e79cdeb145598c1de3951f0f075b1789658dec151a94a3ea955566bcaba/expression-5.0.2-py3-none-any.whl
+  sha256: 2b54eeccb6247d86f598a3ce1a4e1efc56e4c7ca901f622d8203919d4106e147
+  requires_dist:
+  - pydantic>=2.0.0,<3.0.0 ; extra == 'pydantic' or extra == 'all'
+  - typing-extensions>=4.1.1,<5.0.0
+  requires_python: '>=3.11,<4'
 - kind: conda
   name: hypothesis
   version: 6.100.6
@@ -376,6 +392,45 @@ packages:
   size: 14680
   timestamp: 1704317789138
 - kind: conda
+  name: mypy
+  version: 1.10.0
+  build: py312h4a164c9_0
+  subdir: osx-arm64
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/mypy-1.10.0-py312h4a164c9_0.conda
+  sha256: 3d6f618f8c366ff766686a36467c81068f2583696a23f63366641a50f2133082
+  md5: 35bf371fb16eed1be04831c597f91870
+  depends:
+  - __osx >=11.0
+  - mypy_extensions >=1.0.0
+  - psutil >=4.0
+  - python >=3.12,<3.13.0a0
+  - python >=3.12,<3.13.0a0 *_cpython
+  - python_abi 3.12.* *_cp312
+  - typing_extensions >=4.1.0
+  license: MIT
+  license_family: MIT
+  purls:
+  - pkg:pypi/mypy
+  size: 9636672
+  timestamp: 1714003119958
+- kind: conda
+  name: mypy_extensions
+  version: 1.0.0
+  build: pyha770c72_0
+  subdir: noarch
+  noarch: python
+  url: https://conda.anaconda.org/conda-forge/noarch/mypy_extensions-1.0.0-pyha770c72_0.conda
+  sha256: f240217476e148e825420c6bc3a0c0efb08c0718b7042fae960400c02af858a3
+  md5: 4eccaeba205f0aed9ac3a9ea58568ca3
+  depends:
+  - python >=3.5
+  license: MIT
+  license_family: MIT
+  purls:
+  - pkg:pypi/mypy-extensions
+  size: 10492
+  timestamp: 1675543414256
+- kind: conda
   name: ncurses
   version: '6.5'
   build: hb89a1cb_0
@@ -402,6 +457,13 @@ packages:
   license_family: Apache
   size: 2888226
   timestamp: 1714466346030
+- kind: pypi
+  name: oslash
+  version: 0.6.3
+  url: https://files.pythonhosted.org/packages/2d/c3/77d40a6e20fdfbf92b086d2c47e3cc82731e179e3f44bdc8e60b7306bcc3/OSlash-0.6.3-py3-none-any.whl
+  sha256: 89b978443b7db3ac2666106bdc3680add3c886a6d8fcdd02fd062af86d29494f
+  requires_dist:
+  - typing-extensions
 - kind: conda
   name: packaging
   version: '24.0'
@@ -420,6 +482,22 @@ packages:
   size: 49832
   timestamp: 1710076089469
 - kind: conda
+  name: pixi-pycharm
+  version: 0.0.5
+  build: unix_1234567_0
+  subdir: noarch
+  noarch: generic
+  url: https://conda.anaconda.org/conda-forge/noarch/pixi-pycharm-0.0.5-unix_1234567_0.conda
+  sha256: f33b5c5f7b87447080253093c5bdb6aa9790cc300d059674a557b1d9acba0361
+  md5: d204496f23fcb1a77076969caea2713e
+  depends:
+  - __unix
+  - python >=3.8
+  license: BSD-3-Clause
+  license_family: BSD
+  size: 8760
+  timestamp: 1713442614759
+- kind: conda
   name: pluggy
   version: 1.5.0
   build: pyhd8ed1ab_0
@@ -436,6 +514,58 @@ packages:
   - pkg:pypi/pluggy
   size: 23815
   timestamp: 1713667175451
+- kind: pypi
+  name: polars
+  version: 0.20.25
+  url: https://files.pythonhosted.org/packages/90/9e/b17797f3c6f3db525dde26a3f0d45a90c7de0df3476a430411160332d6e7/polars-0.20.25-cp38-abi3-macosx_11_0_arm64.whl
+  sha256: 3bda62b681726538714a1159638ab7c9eeca6b8633fd778d84810c3e13b9c7e3
+  requires_dist:
+  - adbc-driver-manager ; extra == 'adbc'
+  - adbc-driver-sqlite ; extra == 'adbc'
+  - nest-asyncio ; extra == 'async'
+  - cloudpickle ; extra == 'cloudpickle'
+  - connectorx>=0.3.2 ; extra == 'connectorx'
+  - deltalake>=0.15.0 ; extra == 'deltalake'
+  - fastexcel>=0.9 ; extra == 'fastexcel'
+  - fsspec ; extra == 'fsspec'
+  - gevent ; extra == 'gevent'
+  - matplotlib ; extra == 'matplotlib'
+  - numpy>=1.16.0 ; extra == 'numpy'
+  - openpyxl>=3.0.0 ; extra == 'openpyxl'
+  - pyarrow>=7.0.0 ; extra == 'pandas'
+  - pandas ; extra == 'pandas'
+  - hvplot>=0.9.1 ; extra == 'plot'
+  - pyarrow>=7.0.0 ; extra == 'pyarrow'
+  - pydantic ; extra == 'pydantic'
+  - pyiceberg>=0.5.0 ; extra == 'pyiceberg'
+  - pyxlsb>=1.0 ; extra == 'pyxlsb'
+  - sqlalchemy ; extra == 'sqlalchemy'
+  - pandas ; extra == 'sqlalchemy'
+  - backports-zoneinfo ; python_version < '3.9' and extra == 'timezone'
+  - tzdata ; platform_system == 'Windows' and extra == 'timezone'
+  - torch ; extra == 'torch'
+  - xlsx2csv>=0.8.0 ; extra == 'xlsx2csv'
+  - xlsxwriter ; extra == 'xlsxwriter'
+  - polars[adbc,async,cloudpickle,connectorx,deltalake,fastexcel,fsspec,gevent,numpy,pandas,plot,pyarrow,pydantic,pyiceberg,sqlalchemy,timezone,torch,xlsx2csv,xlsxwriter] ; extra == 'all'
+  requires_python: '>=3.8'
+- kind: conda
+  name: psutil
+  version: 5.9.8
+  build: py312he37b823_0
+  subdir: osx-arm64
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/psutil-5.9.8-py312he37b823_0.conda
+  sha256: a996bd5f878da264d1d3ba7fde717b0a2c158a86645efb1e899d087cca74832d
+  md5: cd6e99b9c5a623735161973b5f693a86
+  depends:
+  - python >=3.12,<3.13.0a0
+  - python >=3.12,<3.13.0a0 *_cpython
+  - python_abi 3.12.* *_cp312
+  license: BSD-3-Clause
+  license_family: BSD
+  purls:
+  - pkg:pypi/psutil
+  size: 499490
+  timestamp: 1705722767772
 - kind: conda
   name: pygments
   version: 2.18.0
