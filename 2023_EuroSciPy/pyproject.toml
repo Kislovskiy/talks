@@ -12,5 +12,5 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest==8.2.0",
-    "hypothesis==6.100.5",
+    "hypothesis==6.102.4",
 ]
