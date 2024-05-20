@@ -18,6 +18,7 @@ rich = ">=13.7.1,<13.8"
 toolz = ">=0.12.1,<0.13"
 pixi-pycharm = ">=0.0.5,<0.1"
 mypy = ">=1.10.0,<1.11"
+ipython = ">=8.24.0,<8.25"
 
 [tool.pixi.feature.test.tasks]
 test = "pytest"
