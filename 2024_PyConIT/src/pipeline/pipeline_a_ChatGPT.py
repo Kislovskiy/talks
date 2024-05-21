@@ -1,8 +1,9 @@
 import csv
 from pathlib import Path
+from typing import Optional, Union
 
 
-def read_csv_and_compute_average(filename):
+def read_csv_and_compute_average(filename: Union[str, Path]) -> Optional[float]:
     scores = []
 
     with open(filename, newline="") as csvfile:
@@ -17,17 +18,16 @@ def read_csv_and_compute_average(filename):
                 print(f"Invalid score '{row['Score']}' for {row['Name']}, skipping.")
 
     if scores:
-        average_score = sum(scores) / len(scores)
-        print(f"The average score for the class is: {average_score:.2f}")
+        return sum(scores) / len(scores)
     else:
-        print("No valid scores found.")
-
-
-def main():
-    csv_file_path = Path(__file__).parent / "data" / "example.csv"
-    read_csv_and_compute_average(csv_file_path)
+        return None
 
 
 if __name__ == "__main__":
-    # Call the function with the CSV file path
-    read_csv_and_compute_average(Path(__file__).parent / "data" / "example.csv")
+    average_score = read_csv_and_compute_average(
+        Path(__file__).parent / "data" / "example.csv"
+    )
+    if average_score:
+        print(f"The average score for the class is: {average_score:.2f}")
+    else:
+        print("No valid scores found.")

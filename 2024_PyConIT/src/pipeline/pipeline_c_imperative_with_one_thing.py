@@ -37,12 +37,6 @@ def is_valid_number(x):
 
 
 def calculate_average(column_values):
-    """Calculate the average of a list of numbers
-
-
-    :param column_values:
-    :return:
-    """
     try:
         return sum(column_values) / len(column_values)
     except ZeroDivisionError:
