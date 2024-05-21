@@ -19,6 +19,7 @@ toolz = ">=0.12.1,<0.13"
 pixi-pycharm = ">=0.0.5,<0.1"
 mypy = ">=1.10.0,<1.11"
 ipython = ">=8.24.0,<8.25"
+tqdm = ">=4.66.4,<4.67"
 
 [tool.pixi.feature.test.tasks]
 test = "pytest"
