@@ -11,7 +11,6 @@ environments:
       osx-arm64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/asttokens-2.4.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/attrs-23.2.0-pyh71513ae_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/backports.zoneinfo-0.2.1-py312h81bd7bf_8.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/brotli-python-1.1.0-py312h9f69965_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/bzip2-1.0.8-h93a5062_5.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ca-certificates-2024.2.2-hf0a4a13_0.conda
@@ -22,7 +21,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/decorator-5.1.1-pyhd8ed1ab_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.2.0-pyhd8ed1ab_2.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/executing-2.0.1-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/hypothesis-6.100.6-pyha770c72_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/hypothesis-6.151.10-pyha770c72_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/idna-3.7-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/iniconfig-2.0.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ipython-8.37.0-pyh8f84b5b_0.conda
@@ -102,17 +101,6 @@ packages:
   - pkg:pypi/attrs
   size: 54582
   timestamp: 1704011393776
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/backports.zoneinfo-0.2.1-py312h81bd7bf_8.conda
-  sha256: e233c2ca389ea9bf34a9f38e94d033cece302872024e83304807b3d1b5a6a458
-  md5: 288d72f5f8e52ca04bb8df2af011d5a3
-  depends:
-  - python >=3.12.0rc3,<3.13.0a0
-  - python_abi 3.12.* *_cp312
-  license: Apache-2.0
-  license_family: APACHE
-  purls: []
-  size: 6883
-  timestamp: 1695531710824
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/brotli-python-1.1.0-py312h9f69965_1.conda
   sha256: 3418b1738243abba99e931c017b952771eeaa1f353c07f7d45b55e83bb74fcb3
   md5: 1bc01b9ffdf42beb1a9fe4e9222e0567
@@ -228,22 +216,22 @@ packages:
   - pydantic>=2.0.0,<3.0.0 ; extra == 'all' or extra == 'pydantic'
   - typing-extensions>=4.1.1,<5.0.0
   requires_python: '>=3.11,<4'
-- conda: https://conda.anaconda.org/conda-forge/noarch/hypothesis-6.100.6-pyha770c72_0.conda
-  sha256: 5e286af8cee23ecff27cdbe89b81ae71b46273c979706f963fea8397da818ccf
-  md5: 12ac15b8f5d680fbe7421938d878a9c3
+- conda: https://conda.anaconda.org/conda-forge/noarch/hypothesis-6.151.10-pyha770c72_0.conda
+  sha256: 45a7d65dcc8eb290f70a881b3202b31bae2b62544dec967664f32616ed6de812
+  md5: b7bc50c34b404d9b21ceb20d3d2b3643
   depends:
-  - attrs >=19.2.0
-  - backports.zoneinfo >=0.2.1
+  - attrs >=22.2.0
   - click >=7.0
-  - exceptiongroup >=1.0.0rc8
-  - python >=3.8
+  - exceptiongroup >=1.0.0
+  - python >=3.10
   - setuptools
   - sortedcontainers >=2.1.0,<3.0.0
   license: MPL-2.0
+  license_family: MOZILLA
   purls:
-  - pkg:pypi/hypothesis
-  size: 329283
-  timestamp: 1715367575941
+  - pkg:pypi/hypothesis?source=hash-mapping
+  size: 377455
+  timestamp: 1774752946761
 - conda: https://conda.anaconda.org/conda-forge/noarch/idna-3.7-pyhd8ed1ab_0.conda
   sha256: 9687ee909ed46169395d4f99a0ee94b80a52f87bed69cd454bb6d37ffeb0ec7b
   md5: c0cc1420498b17414d8617d0b9f506ca
