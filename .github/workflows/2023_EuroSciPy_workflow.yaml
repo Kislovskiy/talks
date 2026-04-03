@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       if: github.ref == 'refs/heads/main'  # Only checkout when the branch is 'main'
     - name: Check for backend file changes
-      uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 #v3.0.2
+      uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3.0.3
       id: changes
       with:
         filters: |
