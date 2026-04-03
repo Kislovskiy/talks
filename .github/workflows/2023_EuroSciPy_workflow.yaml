@@ -2,10 +2,7 @@ name: "2023 EuroSciPy 🇨🇭 Continuous Integration Demo"
 run-name: "️BUILD - 2023 EuroSciPy (${{ github.event_name }})"
 
 on:
-  pull_request:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 defaults:
   run:

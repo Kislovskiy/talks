@@ -2,10 +2,7 @@ name: "2023 PyConIT 🇮🇹 generate gallery.pdf"
 run-name: "️BUILD - 2023 PyConIT (${{ github.event_name }})"
 
 on:
-  pull_request:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 env:
   PYTHON_VERSION: 3.11
